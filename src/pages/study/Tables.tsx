@@ -1,0 +1,15 @@
+type Props = {
+  title?: string;
+};
+const Tables = ({ title = "Tables" }: Props) => {
+  return (
+    <div className="flex flex-col items-center justify-center h-full w-full">
+      <h1 className="text-2xl font-bold text-slate-50">{title}</h1>
+      <div className="w-full h-full flex flex-col items-center justify-center">
+        <p className="text-slate-50">This is the tables page</p>
+      </div>
+    </div>
+  );
+};
+
+export default Tables;

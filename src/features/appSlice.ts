@@ -2,21 +2,26 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface AppState {
   url: string;
+  carouselTitle: string;
 };
 
 const initialState: AppState = {
   url: "https://localhost:44324/api/",
+  carouselTitle: ""
 };
 
 const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    setUrl(state, action: PayloadAction<string>) {
+    setUrl: (state, action: PayloadAction<string>) => {
       state.url = action.payload;
     },
+    setCarouselTitle: (state, action: PayloadAction<string>) => {
+      state.carouselTitle = action.payload;
+    }
   },
 });
 
-export const { setUrl } = appSlice.actions;
+export const { setUrl, setCarouselTitle } = appSlice.actions;
 export default appSlice.reducer;
