@@ -1,10 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 // import slice reducers here
+import appReducer from "../features/appSlice";
+import fieldReducer from "../features/fieldSlice";
+import tableReducer from "../features/tableSlice";
 
 export const store = configureStore({
   reducer: {
-
+    app: appReducer,
+    field: fieldReducer,
+    table: tableReducer,
   }
 });
 
