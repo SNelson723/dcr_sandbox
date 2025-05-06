@@ -5,7 +5,6 @@ export const getTables = async (url: string) => {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      // "Access-Control-Allow-Origin": "*",
     },
     url: url + "tables/all",
   });
