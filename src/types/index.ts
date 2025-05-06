@@ -61,3 +61,7 @@ export type HourlyItem = {
   f64: string;
   f65: string;
 }
+
+export type JsonError = {
+  message: string;
+}
