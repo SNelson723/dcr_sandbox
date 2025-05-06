@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    width: 0em;
+    height: 0em;
+  }
+}
