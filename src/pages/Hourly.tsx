@@ -27,17 +27,13 @@ const TopHourlyDepts = () => {
   };
 
   return (
-    <div>
-      <div>
+    <div className="bg-slate-50 text-slate-900 p-4 rounded-lg shadow-lg">
+      <div className="grid grid-cols-2 gap-4">
         {depts.map((dept, i) => (
-          <div>
-            <h3 key={i}>{dept.f65}</h3>
+          <div className="bg-white rounded-lg shadow-lg px-4 py-2">
+            <p key={i}>{dept.f65}</p>
             <p>{dept.f64}</p>
-            <p>{dept.f03}</p>
             <p>{dept.f238}</p>
-            <p>{dept.f254}</p>
-            <p>{dept.hour}</p>
-            <p>{dept.f1056}</p>
           </div>
         ))}
       </div>
@@ -47,10 +43,8 @@ const TopHourlyDepts = () => {
 
 const Hourly = () => {
   return (
-    <div>
-      <div>
-        <TopHourlyDepts />
-      </div>
+    <div className="py-4">
+      <TopHourlyDepts />
     </div>
   );
 };
