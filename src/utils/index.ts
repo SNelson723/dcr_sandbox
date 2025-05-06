@@ -12,3 +12,12 @@ export const formatCurrency = (
     currency: currency,
   }).format(numberValue);
 }
+
+export const colors: string[] = [
+    "bg-green-500",
+    "bg-blue-500",
+    "bg-indigo-500",
+    "bg-purple-500",
+    "bg-yellow-500",
+    "bg-orange-500",
+  ];
