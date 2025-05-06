@@ -36,7 +36,7 @@ export type HourlySubDept = {
   f65: string;
   f64: string;
   f04: string;
-  f238: string;
+  f1022: string;
   f254: string;
   hour: string;
   f1056: string;

@@ -1,15 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import { getTopHourlyDepts } from "../../api/hourly";
-import { setDepts } from "../../features/hourlySlice";
+import { getTopHourlySubDepts } from "../../api/hourly";
+import { setSubDepts } from "../../features/hourlySlice";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { HourlyDept, JsonError } from "../../types";
+import { HourlySubDept, JsonError } from "../../types";
 import { colors, formatCurrency } from "../../utils";
 import GraphBar from "./GraphBar";
 
-const TopHourlyDepts = () => {
+const TopHourlySubDepts = () => {
   const dispatch = useAppDispatch();
   const { url } = useAppSelector((state) => state.app);
-  const { depts } = useAppSelector((state) => state.hourly);
+  const { subdepts } = useAppSelector((state) => state.hourly);
   const [total, setTotal] = useState<number>(0);
 
   useEffect(() => {
@@ -17,21 +18,22 @@ const TopHourlyDepts = () => {
   }, []);
 
   useEffect(() => {
-    if (depts.length > 0) {
-      setTotal(depts.reduce((acc, dept) => acc + parseFloat(dept.f65), 0));
+    if (subdepts.length > 0) {
+      setTotal(subdepts.reduce((acc, dept) => acc + parseFloat(dept.f65), 0));
     }
-  }, [depts]);
+  }, [subdepts]);
 
   const getData = () => {
-    getTopHourlyDepts(url, "5/5/2025", "11")
+    getTopHourlySubDepts(url, "5/5/2025", "11")
       .then((resp) => {
         const j = resp.data;
         if (j.error === 0) {
-          const sorted: HourlyDept[] = j.depts.sort(
-            (a: HourlyDept, b: HourlyDept) =>
+          console.log(j);
+          const sorted: HourlySubDept[] = j.subdepts.sort(
+            (a: HourlySubDept, b: HourlySubDept) =>
               parseFloat(b.f65) - parseFloat(a.f65)
           );
-          dispatch(setDepts(sorted));
+          dispatch(setSubDepts(sorted));
         }
       })
       .catch((e: JsonError) => console.error(e.message));
@@ -39,7 +41,7 @@ const TopHourlyDepts = () => {
 
   return (
     <>
-      {depts.length && total > 0 ? (
+      {subdepts.length && total > 0 ? (
         <div className="bg-white text-slate-900 p-4 rounded-lg shadow-lg animate-fadeIn">
           <div className="flex justify-between items-center mb-4 font-semibold border-b border-b-black">
             <div>Houchens 001</div>
@@ -47,13 +49,13 @@ const TopHourlyDepts = () => {
             <div>Hour: 11</div>
           </div>
           <div className="flex flex-col gap-2 w-full">
-            {depts.map((dept, i) => (
+            {subdepts.map((dept, i) => (
               <div
                 className="grid grid-cols-[1fr_3fr_1fr_0.5fr] gap-2 items-center"
                 key={`dept_${i}`}
               >
                 {/* label */}
-                <div className="text-sm text-right">{dept.f238}</div>
+                <div className="text-sm text-right">{dept.f1022}</div>
                 {/* bar container */}
                 <GraphBar
                   current={parseFloat(dept.f65)}
@@ -73,4 +75,4 @@ const TopHourlyDepts = () => {
   );
 };
 
-export default TopHourlyDepts;
+export default TopHourlySubDepts;
