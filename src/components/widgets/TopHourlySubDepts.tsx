@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { getTopHourlySubDepts } from "../../api/hourly";
 import { setSubDepts } from "../../features/hourlySlice";
@@ -28,7 +27,6 @@ const TopHourlySubDepts = () => {
       .then((resp) => {
         const j = resp.data;
         if (j.error === 0) {
-          console.log(j);
           const sorted: HourlySubDept[] = j.subdepts.sort(
             (a: HourlySubDept, b: HourlySubDept) =>
               parseFloat(b.f65) - parseFloat(a.f65)
@@ -45,6 +43,7 @@ const TopHourlySubDepts = () => {
         <div className="bg-white text-slate-900 p-4 rounded-lg shadow-lg animate-fadeIn">
           <div className="flex justify-between items-center mb-4 font-semibold border-b border-b-black">
             <div>Houchens 001</div>
+            <div>Sub Dept</div>
             <div>5/5/2025</div>
             <div>Hour: 11</div>
           </div>
@@ -54,17 +53,13 @@ const TopHourlySubDepts = () => {
                 className="grid grid-cols-[1fr_3fr_1fr_0.5fr] gap-2 items-center"
                 key={`dept_${i}`}
               >
-                {/* label */}
                 <div className="text-sm text-right">{dept.f1022}</div>
-                {/* bar container */}
                 <GraphBar
                   current={parseFloat(dept.f65)}
                   max={total}
                   className={`${colors[i]}`}
                 />
-                {/* total sales */}
                 <div className="text-right">{formatCurrency(dept.f65)}</div>
-                {/* qty */}
                 <div className="text-right">{dept.f64}</div>
               </div>
             ))}

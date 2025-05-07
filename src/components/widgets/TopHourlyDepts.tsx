@@ -43,6 +43,7 @@ const TopHourlyDepts = () => {
         <div className="bg-white text-slate-900 p-4 rounded-lg shadow-lg animate-fadeIn">
           <div className="flex justify-between items-center mb-4 font-semibold border-b border-b-black">
             <div>Houchens 001</div>
+            <div>Dept</div>
             <div>5/5/2025</div>
             <div>Hour: 11</div>
           </div>
@@ -52,17 +53,13 @@ const TopHourlyDepts = () => {
                 className="grid grid-cols-[1fr_3fr_1fr_0.5fr] gap-2 items-center"
                 key={`dept_${i}`}
               >
-                {/* label */}
                 <div className="text-sm text-right">{dept.f238}</div>
-                {/* bar container */}
                 <GraphBar
                   current={parseFloat(dept.f65)}
                   max={total}
                   className={`${colors[i]}`}
                 />
-                {/* total sales */}
                 <div className="text-right">{formatCurrency(dept.f65)}</div>
-                {/* qty */}
                 <div className="text-right">{dept.f64}</div>
               </div>
             ))}

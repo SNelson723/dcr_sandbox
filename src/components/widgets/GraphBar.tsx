@@ -23,7 +23,7 @@ const GraphBar = ({ current, max, className = "" }: ProgressBarProps) => {
     <div className="relative h-8 w-full rounded-full overflow-hidden">
       <div
         style={{ width: `${progress}%` }}
-        className={`absolute h-full transition-all rounded-r-xl duration-300 ease-in-out ${className}`}
+        className={`absolute h-full transition-all rounded-r-full duration-300 ease-in-out ${className}`}
       ></div>
     </div>
   );
