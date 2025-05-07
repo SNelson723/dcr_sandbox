@@ -1,6 +1,7 @@
 import TopHourlyCats from "../components/widgets/TopHourlyCats";
 import TopHourlyDepts from "../components/widgets/TopHourlyDepts";
 import TopHourlySubDepts from "../components/widgets/TopHourlySubDepts";
+import TopHourlyTenders from "../components/widgets/TopHourlyTenders";
 
 const Hourly = () => {
   return (
@@ -8,6 +9,7 @@ const Hourly = () => {
       <TopHourlyDepts />
       <TopHourlySubDepts />
       <TopHourlyCats />
+      <TopHourlyTenders />
     </div>
   );
 };

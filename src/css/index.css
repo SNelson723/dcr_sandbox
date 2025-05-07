@@ -13,9 +13,20 @@ body {
   overscroll-behavior: contain;
 }
 
+:root {
+  --color-blue: #3b82f6;
+  --color-orange: #f97316;
+  --color-green: #10b981;
+  --color-light-green: rgb(167, 243, 208);
+  --color-light-blue: rgb(191, 219, 254);
+  --color-light-orange: rgb(254, 215, 170);
+}
+
+
 @layer utilities {
   .no-scrollbar::-webkit-scrollbar {
     width: 0em;
     height: 0em;
   }
 }
+
