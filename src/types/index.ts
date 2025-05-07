@@ -57,6 +57,7 @@ export type HourlyTender = {
 }
 
 export type HourlyItem = {
+  f01: string;
   f1041: string;
   f64: string;
   f65: string;

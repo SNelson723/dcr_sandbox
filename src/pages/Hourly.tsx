@@ -3,14 +3,16 @@ import TopHourlyDepts from "../components/widgets/TopHourlyDepts";
 import TopHourlySubDepts from "../components/widgets/TopHourlySubDepts";
 import TopHourlyTenders from "../components/widgets/TopHourlyTenders";
 import HourlyItems from "../components/widgets/HourlyItems";
+import { useRef } from "react";
 
 interface HourlyProps {
   title?: string;
 }
 
 const Hourly = ({ title }: HourlyProps) => {
+  const ref = useRef<HTMLDivElement>(null);
   return (
-    <div className="grid grid-cols-4 gap-2 items-center justify-center">
+    <div ref={ref} className="grid grid-cols-4 gap-2 items-center justify-center">
       <TopHourlyDepts />
       <TopHourlySubDepts />
       <TopHourlyTenders />

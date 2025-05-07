@@ -25,7 +25,7 @@ const Carousel = ({ children }: CarouselProps) => {
   }, [visibleIndex]);
 
   return (
-    <div className="relative max-w-[70vw] overflow-hidden max-h-[70vh] h-[70vh] border border-white">
+    <div className="relative max-w-[70vw] overflow-hidden max-h-[70vh] h-[70vh]">
       <div
         className="flex transition-transform duration-500"
         style={{ transform: `translateX(-${visibleIndex * 100}%)` }}
@@ -42,13 +42,13 @@ const Carousel = ({ children }: CarouselProps) => {
       <div className="absolute bottom-0 left-1/2 z-50 -translate-x-1/2 mb-4 flex gap-2">
         <button
           onClick={prev}
-          className="absolute -left-16 top-1/2 -translate-y-1/2 z-10 bg-blue-200 py-1 px-2 hover:bg-blue-400 transition-all duration-300 rounded-full p-1 shadow"
+          className="absolute -left-16 top-1/2 -translate-y-1/2 z-10 bg-white py-1 px-2 hover:bg-blue-400 transition-all duration-300 rounded-full p-1 shadow"
         >
           Prev
         </button>
         <button
           onClick={next}
-          className="absolute -right-16 top-1/2 -translate-y-1/2 z-10 bg-blue-200 py-1 px-2 hover:bg-blue-400 transition-all duration-300 rounded-full p-1 shadow"
+          className="absolute -right-16 top-1/2 -translate-y-1/2 z-10 bg-white py-1 px-2 hover:bg-blue-400 transition-all duration-300 rounded-full p-1 shadow"
         >
           Next
         </button>
@@ -57,7 +57,7 @@ const Carousel = ({ children }: CarouselProps) => {
             key={`dot_${i}`}
             onClick={() => goTo(i)}
             className={`w-3 h-3 rounded-full mx-1 ${
-              i === visibleIndex ? "bg-blue-500" : "bg-gray-300"
+              i === visibleIndex ? "bg-emerald-500" : "bg-white"
             }`}
           />
         ))}
