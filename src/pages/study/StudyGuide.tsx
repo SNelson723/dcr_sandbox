@@ -9,7 +9,7 @@ const StudyGuide = () => {
       <div className="text-xl my-10 font-semibold">Study Guide page</div>
 
       {/* Carousel practice */}
-      <div className="">
+      <div className="text-black">
         <Carousel>
           <Tables title="Tables Guide" />
           <Fields title="Fields Guide" />

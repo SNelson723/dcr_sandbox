@@ -12,7 +12,7 @@ const TopHourlyCats = () => {
   const [total, setTotal] = useState<number>(0);
 
   useEffect(() => {
-    getTopHourlyCats(url, "5/5/2025", "11")
+    getTopHourlyCats(url, "5/7/2025", "11")
       .then((resp) => {
         const j = resp.data;
         if (j.error === 0) {
@@ -52,7 +52,9 @@ const TopHourlyCats = () => {
             <div className="text-lg text-center font-semibold">
               {formatCurrency(cat.f65)}
             </div>
-            <div className="text-center">{getClampedPercent(parseFloat(cat.f65))}</div>
+            <div className="text-center">
+              {getClampedPercent(parseFloat(cat.f65))}
+            </div>
           </div>
         ))}
       </div>

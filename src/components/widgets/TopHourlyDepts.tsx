@@ -23,7 +23,7 @@ const TopHourlyDepts = () => {
   }, [depts]);
 
   const getData = () => {
-    getTopHourlyDepts(url, "5/5/2025", "11")
+    getTopHourlyDepts(url, "5/7/2025", "11")
       .then((resp) => {
         const j = resp.data;
         if (j.error === 0) {
@@ -40,21 +40,21 @@ const TopHourlyDepts = () => {
   return (
     <>
       {depts.length && total > 0 ? (
-        <div className="bg-white text-slate-900 p-4 rounded-lg shadow-lg animate-fadeIn">
+        <div className="bg-white text-slate-900 p-4 rounded-lg shadow-lg">
           <div className="flex justify-between items-center mb-4 font-semibold border-b border-b-black">
             <div>Dept</div>
           </div>
           <div className="flex flex-col gap-2 w-full">
             {depts.map((dept, i) => (
               <div
-                className="grid grid-cols-[1fr_3fr_1fr_0.5fr] gap-2 items-center"
+                className="grid grid-cols-[50px_120px_1fr_35px] gap-2 items-center"
                 key={`dept_${i}`}
               >
                 <div className="text-sm text-right">{dept.f238}</div>
                 <GraphBar
                   current={parseFloat(dept.f65)}
                   max={total}
-                  className={`${colors[i]}`}
+                  className={`bg-emerald-500`}
                 />
                 <div className="text-right">{formatCurrency(dept.f65)}</div>
                 <div className="text-right">{dept.f64}</div>

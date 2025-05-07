@@ -20,7 +20,7 @@ const TopHourlyTenders = () => {
   const [css, setCss] = useState<string>("");
 
   useEffect(() => {
-    getTopHourlyTenders(url, "5/5/2025", "11")
+    getTopHourlyTenders(url, "5/7/2025", "11")
       .then((resp) => {
         const j = resp.data;
         if (j.error === 0) {

@@ -23,7 +23,7 @@ const TopHourlySubDepts = () => {
   }, [subdepts]);
 
   const getData = () => {
-    getTopHourlySubDepts(url, "5/5/2025", "11")
+    getTopHourlySubDepts(url, "5/7/2025", "11")
       .then((resp) => {
         const j = resp.data;
         if (j.error === 0) {
@@ -49,14 +49,14 @@ const TopHourlySubDepts = () => {
           <div className="flex flex-col gap-2 w-full">
             {subdepts.map((dept, i) => (
               <div
-                className="grid grid-cols-[1fr_3fr_1fr_0.5fr] gap-2 items-center"
+                className="grid grid-cols-[50px_120px_1fr_35px] gap-2 items-center"
                 key={`dept_${i}`}
               >
                 <div className="text-sm text-right">{dept.f1022}</div>
                 <GraphBar
                   current={parseFloat(dept.f65)}
                   max={total}
-                  className={`${colors[i]}`}
+                  className={`bg-blue-500`}
                 />
                 <div className="text-right">{formatCurrency(dept.f65)}</div>
                 <div className="text-right">{dept.f64}</div>
