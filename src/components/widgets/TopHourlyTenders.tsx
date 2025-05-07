@@ -56,13 +56,13 @@ const TopHourlyTenders = () => {
   return (
     <>
       {css && (
-        <div className="w-full rounded-lg shadow-lg divide-y  bg-white text-black p-4">
-          <div className="mb-2 font-bold text-center border-b border-b-black">
+        <div className="rounded-lg shadow-lg  bg-white text-black p-4">
+          <div className="mb-2 font-semibold text-center border-b border-b-black">
             Tenders
           </div>
-          <div className="flex">
+          <div className="flex my-4">
             <div
-            className="w-[200px] h-[200px] mr-2 rounded-full"
+            className="w-[150px] h-[150px] mr-2 rounded-full"
               style={{
                 background: `conic-gradient(${css})`,
               }}

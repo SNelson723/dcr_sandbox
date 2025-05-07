@@ -2,14 +2,20 @@ import TopHourlyCats from "../components/widgets/TopHourlyCats";
 import TopHourlyDepts from "../components/widgets/TopHourlyDepts";
 import TopHourlySubDepts from "../components/widgets/TopHourlySubDepts";
 import TopHourlyTenders from "../components/widgets/TopHourlyTenders";
+import HourlyItems from "../components/widgets/HourlyItems";
 
-const Hourly = () => {
+interface HourlyProps {
+  title?: string;
+}
+
+const Hourly = ({ title }: HourlyProps) => {
   return (
-    <div className="py-4 mt-4 grid grid-cols-2 gap-2 items-center justify-center">
+    <div className="grid grid-cols-4 gap-2 items-center justify-center">
       <TopHourlyDepts />
       <TopHourlySubDepts />
-      <TopHourlyCats />
       <TopHourlyTenders />
+      <HourlyItems />
+      <TopHourlyCats />
     </div>
   );
 };

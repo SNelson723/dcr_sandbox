@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useAppDispatch } from "../hooks";
 import { setCarouselTitle } from "../features/appSlice";
@@ -26,7 +25,7 @@ const Carousel = ({ children }: CarouselProps) => {
   }, [visibleIndex]);
 
   return (
-    <div className="relative min-w-[50vw] w-full overflow-hidden h-[70vh] bg-slate-400 rounded-lg shadow-lg">
+    <div className="relative max-w-[70vw] overflow-hidden max-h-[70vh] h-[70vh] border border-white">
       <div
         className="flex transition-transform duration-500"
         style={{ transform: `translateX(-${visibleIndex * 100}%)` }}

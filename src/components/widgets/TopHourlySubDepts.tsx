@@ -42,7 +42,6 @@ const TopHourlySubDepts = () => {
       {subdepts.length && total > 0 ? (
         <div className="bg-white text-slate-900 p-4 rounded-lg shadow-lg animate-fadeIn">
           <div className="flex justify-between items-center mb-4 font-semibold border-b border-b-black">
-            <div>Houchens 001</div>
             <div>Sub Dept</div>
             <div>5/5/2025</div>
             <div>Hour: 11</div>

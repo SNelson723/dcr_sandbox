@@ -80,7 +80,7 @@ export const getBottomHourlyItems = async (url: string, date: string, hour: stri
     headers: {
       "Content-Type": "application/json",
     },
-    url: url + "hourlySales/botomtenitems",
+    url: url + "hourlySales/bottomtenitems",
     params: {
       date,
       hour
