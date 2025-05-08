@@ -9,10 +9,10 @@ interface HourlyProps {
   title?: string;
 }
 
-const Hourly = ({ title }: HourlyProps) => {
+const Hourly = ({ title = "Hourly" }: HourlyProps) => {
   const ref = useRef<HTMLDivElement>(null);
   return (
-    <div ref={ref} className="grid grid-cols-4 gap-2 items-center justify-center">
+    <div ref={ref} id={title} className="grid grid-cols-4 gap-2 items-center justify-center data-[query-id=hourly]">
       <TopHourlyDepts />
       <TopHourlySubDepts />
       <TopHourlyTenders />

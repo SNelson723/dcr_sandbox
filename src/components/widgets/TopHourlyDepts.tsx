@@ -3,7 +3,7 @@ import { getTopHourlyDepts } from "../../api/hourly";
 import { setDepts } from "../../features/hourlySlice";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { HourlyDept, JsonError } from "../../types";
-import { colors, formatCurrency } from "../../utils";
+import { formatCurrency } from "../../utils";
 import GraphBar from "./GraphBar";
 
 const TopHourlyDepts = () => {
