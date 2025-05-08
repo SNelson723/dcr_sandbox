@@ -15,7 +15,7 @@ const HourlyItems = () => {
 
   useEffect(() => {
     if (showing === "top") {
-      getTopHourlyItems(url, "5/7/2025", "11")
+      getTopHourlyItems(url, "5/5/2025", "11")
         .then((resp) => {
           const j = resp.data;
           if (j.error === 0) {
@@ -25,7 +25,7 @@ const HourlyItems = () => {
         })
         .catch((e) => console.log(e.message));
     } else {
-      getBottomHourlyItems(url, "5/7/2025", "11")
+      getBottomHourlyItems(url, "5/5/2025", "11")
         .then((resp) => {
           const j = resp.data;
           if (j.error === 0) {
@@ -36,7 +36,6 @@ const HourlyItems = () => {
         .catch((e) => console.log(e.message));
     }
   }, [showing]);
-  console.log("widgetData", widgetData);
 
   return (
     <>
@@ -51,7 +50,8 @@ const HourlyItems = () => {
                 className="grid grid-cols-[1fr_2fr_1fr_0.5fr] p-1 items-center odd:bg-blue-200 even:bg-white"
                 key={`dept_${i}`}
               >
-                <div className="text-sm col-span-2">{item.f1041}</div>
+                {/* truncate => this works for not wrapping text and shows the ellipses */}
+                <div className="text-sm col-span-2 truncate">{item.f1041}</div>
                 <div className="text-right">{formatCurrency(item.f65)}</div>
                 <div className="text-right">{item.f64}</div>
               </div>

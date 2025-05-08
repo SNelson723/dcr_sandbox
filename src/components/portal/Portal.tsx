@@ -1,5 +1,20 @@
+// import { useEffect } from "react";
+// import { useAppDispatch, useAppSelector } from "../../hooks";
+// import { createPortal } from "react-dom";
 
+// interface PortalProps<T> {
+//   id: string;
+//   className?: string;
+//   data: T[];
+//   isShowing: boolean;
+//   onClose: () => void;
+// }
 
-const Portal = () => {};
+// const Portal = <T,>({id, className, data}: PortalProps<T>) => {
 
-export default Portal;
+//   return (
+
+//   )
+// };
+
+// export default Portal;
