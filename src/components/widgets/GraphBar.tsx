@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 
-type ProgressBarProps = {
+type GraphBarProps = {
   current: number;
   max: number;
   className?: string;
+  widget: string;
 };
 
-const GraphBar = ({ current, max, className = "" }: ProgressBarProps) => {
+const GraphBar = ({ current, max, className = "", widget }: GraphBarProps) => {
   const [progress, setProgress] = useState<number>(0);
 
   const getClampedPercent = (val: number) => {
@@ -18,13 +19,19 @@ const GraphBar = ({ current, max, className = "" }: ProgressBarProps) => {
   useEffect(() => {
     setProgress(getClampedPercent(current));
   }, [current, max]);
+  console.log(className);
 
   return (
-    <div className="relative h-8 w-full rounded-full overflow-hidden">
+    <div
+      className={`relative h-8 w-full rounded-full border-2 border-black overflow-hidden text-right flex text-sm items-center ${
+        widget == "dept" ? "bg-emerald-200" : "bg-blue-200"
+      }`}
+    >
       <div
         style={{ width: `${progress}%` }}
-        className={`absolute h-full transition-all rounded-r-full duration-300 ease-in-out ${className}`}
+        className={`absolute h-full transition-all  duration-300 text-right ease-in-out ${className}`}
       ></div>
+      <div className="absolute right-1">{progress}%</div>
     </div>
   );
 };

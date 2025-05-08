@@ -52,9 +52,9 @@ const Portal = ({ title, className = "", isShowing, onClose }: PortalProps) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="font-semibold flex border-b border-b-black">
-          <span className="w-1/3">{portalType} Items: </span>
-          <span className="w-1/3 text-center">{title}</span>
-          <span className="w-1/3 text-right">Hour: {selectedHour}</span>
+          <span className="w-1/2">{portalType} Items: </span>
+          <span className="w-1/4">{title}</span>
+          <span className="w-1/4 text-right">Hour: {selectedHour}</span>
         </div>
 
         {deptItems.length > 0 ? (
@@ -62,12 +62,12 @@ const Portal = ({ title, className = "", isShowing, onClose }: PortalProps) => {
             {deptItems.map((item, i) => (
               <div
                 key={i}
-                className="grid grid-cols-[1fr_0.5fr_0.5fr] gap-2 p-1 odd:bg-blue-200 even:bg-white"
+                className="grid grid-cols-[1fr_1fr_1fr_0.5fr] gap-2 p-1 odd:bg-blue-200 even:bg-white"
               >
                 <span className="truncate">{item.f1041}</span>
                 <span className="text-right">{item.f254.split(" ")[0]}</span>
                 <span className="text-right">{formatCurrency(item.f65)}</span>
-                {/* <span className="text-right">{item.}</span> */}
+                <span className="text-right">{item.f64}</span>
               </div>
             ))}
           </div>

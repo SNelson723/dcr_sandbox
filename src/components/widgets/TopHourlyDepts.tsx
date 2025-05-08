@@ -73,6 +73,7 @@ const TopHourlyDepts = () => {
                   current={parseFloat(dept.f65)}
                   max={total}
                   className={`bg-emerald-500`}
+                  widget="dept"
                 />
                 <div className="text-right">{formatCurrency(dept.f65)}</div>
                 <div className="text-right">{dept.f64}</div>

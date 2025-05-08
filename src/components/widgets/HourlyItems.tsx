@@ -40,7 +40,7 @@ const HourlyItems = () => {
     <>
       {widgetData.length ? (
         <div className="flex flex-col p-4 row-span-2 min-h-[610px] max-h-[610px] bg-white rounded-lg shadow-md text-black">
-          <h2 className="border-b border-b-black font-semibold pb-[1px] text-center">
+          <h2 className="border-b border-b-black font-semibold pb-[1px]">
             Hourly Items
           </h2>
           <div className="flex flex-col w-full divide-gray-950 divide-y border-b border-b-gray-950">

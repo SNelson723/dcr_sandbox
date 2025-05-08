@@ -70,7 +70,7 @@ export type DeptItem = {
   f1041: string;
   f254: string;
   f65: string;
-  hour: string;
+  f64: string;
 }
 
 export type JsonError = {

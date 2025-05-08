@@ -39,7 +39,7 @@ const TopHourlyCats = () => {
 
   return (
     <div className="col-span-3 rounded-lg shadow-lg bg-white text-black p-4">
-      <div className="mb-2 font-semibold text-center border-b border-b-black">
+      <div className="mb-2 font-semibold  border-b border-b-black">
         Top Hourly Cats
       </div>
       <div className="grid grid-cols-4 gap-2">
@@ -47,7 +47,7 @@ const TopHourlyCats = () => {
           <div className="rounded-lg shadow-lg" key={`cat_${i}`}>
             <div className="border-b flex justify-between items-center py-1 px-3">
               <div className="text-sm">{cat.f1023}</div>
-              <div className="text-sm text-center">{cat.f64}</div>
+              <div className="text-sm text-center">Qty: {cat.f64}</div>
             </div>
             <div className="text-lg text-center font-semibold">
               {formatCurrency(cat.f65)}
