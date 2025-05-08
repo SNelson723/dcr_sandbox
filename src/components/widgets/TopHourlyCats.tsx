@@ -7,12 +7,12 @@ import { formatCurrency } from "../../utils";
 
 const TopHourlyCats = () => {
   const dispatch = useAppDispatch();
-  const { url } = useAppSelector((state) => state.app);
+  const { url, date, selectedHour } = useAppSelector((state) => state.app);
   const { cats } = useAppSelector((state) => state.hourly);
   const [total, setTotal] = useState<number>(0);
 
   useEffect(() => {
-    getTopHourlyCats(url, "5/8/2025", "10")
+    getTopHourlyCats(url, date, selectedHour)
       .then((resp) => {
         const j = resp.data;
         if (j.error === 0) {

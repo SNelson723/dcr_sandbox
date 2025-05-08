@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import { getTopHourlySubDepts } from "../../api/hourly";
-import { setPortalTitle, setPortalType, setSelectedSubDept, setShowPortal, setSubDepts } from "../../features/hourlySlice";
+import {
+  setPortalTitle,
+  setPortalType,
+  setSelectedSubDept,
+  setShowPortal,
+  setSubDepts,
+} from "../../features/hourlySlice";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { HourlySubDept, JsonError } from "../../types";
 import { formatCurrency } from "../../utils";
@@ -8,7 +14,7 @@ import GraphBar from "./GraphBar";
 
 const TopHourlySubDepts = () => {
   const dispatch = useAppDispatch();
-  const { url } = useAppSelector((state) => state.app);
+  const { url, date, selectedHour } = useAppSelector((state) => state.app);
   const { subdepts } = useAppSelector((state) => state.hourly);
   const [total, setTotal] = useState<number>(0);
 
@@ -23,7 +29,7 @@ const TopHourlySubDepts = () => {
   }, [subdepts]);
 
   const getData = () => {
-    getTopHourlySubDepts(url, "5/8/2025", "10")
+    getTopHourlySubDepts(url, date, selectedHour)
       .then((resp) => {
         const j = resp.data;
         if (j.error === 0) {
@@ -38,7 +44,7 @@ const TopHourlySubDepts = () => {
   };
 
   const openPortal = (dept: string, id: string) => {
-    dispatch(setSelectedSubDept(id))
+    dispatch(setSelectedSubDept(id));
     dispatch(setPortalType("Dept"));
     dispatch(setPortalTitle(dept));
     dispatch(setShowPortal(true));

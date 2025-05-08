@@ -8,13 +8,13 @@ import { avg, median, totalQty, totalSales } from "../../utils";
 
 const HourlyItems = () => {
   const dispatch = useAppDispatch();
-  const { url } = useAppSelector((state) => state.app);
+  const { url, date, selectedHour } = useAppSelector((state) => state.app);
   const [showing, setShowing] = useState<string>("top");
   const [widgetData, setWidgetData] = useState<HourlyItem[]>([]);
 
   useEffect(() => {
     if (showing === "top") {
-      getTopHourlyItems(url, "5/8/2025", "10")
+      getTopHourlyItems(url, date, selectedHour)
         .then((resp) => {
           const j = resp.data;
           if (j.error === 0) {

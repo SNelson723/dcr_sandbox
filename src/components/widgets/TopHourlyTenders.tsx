@@ -15,12 +15,12 @@ const colors = [
 
 const TopHourlyTenders = () => {
   const dispatch = useAppDispatch();
-  const { url } = useAppSelector((state) => state.app);
+  const { url, date, selectedHour } = useAppSelector((state) => state.app);
   const { tenders } = useAppSelector((state) => state.hourly);
   const [css, setCss] = useState<string>("");
 
   useEffect(() => {
-    getTopHourlyTenders(url, "5/8/2025", "10")
+    getTopHourlyTenders(url, date, selectedHour)
       .then((resp) => {
         const j = resp.data;
         if (j.error === 0) {
@@ -62,7 +62,7 @@ const TopHourlyTenders = () => {
           </div>
           <div className="flex my-4">
             <div
-            className="w-[150px] h-[150px] mr-2 rounded-full"
+              className="w-[150px] h-[150px] mr-2 rounded-full"
               style={{
                 background: `conic-gradient(${css})`,
               }}
@@ -79,7 +79,7 @@ const TopHourlyTenders = () => {
                     ></div>
                     <div className="ml-2">{tender.f1041}</div>
                   </div>
-                    <div>{tender.qty}</div>
+                  <div>{tender.qty}</div>
                 </div>
               ))}
             </div>

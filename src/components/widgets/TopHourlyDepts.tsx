@@ -14,7 +14,7 @@ import GraphBar from "./GraphBar";
 
 const TopHourlyDepts = () => {
   const dispatch = useAppDispatch();
-  const { url } = useAppSelector((state) => state.app);
+  const { url, date, selectedHour } = useAppSelector((state) => state.app);
   const { depts } = useAppSelector((state) => state.hourly);
   const [total, setTotal] = useState<number>(0);
 
@@ -29,7 +29,7 @@ const TopHourlyDepts = () => {
   }, [depts]);
 
   const getData = () => {
-    getTopHourlyDepts(url, "5/8/2025", "10")
+    getTopHourlyDepts(url, date, selectedHour)
       .then((resp) => {
         const j = resp.data;
         if (j.error === 0) {
@@ -44,7 +44,7 @@ const TopHourlyDepts = () => {
   };
 
   const openPortal = (dept: string, id: string) => {
-    dispatch(setSelectedDept(id))
+    dispatch(setSelectedDept(id));
     dispatch(setPortalType("Dept"));
     dispatch(setPortalTitle(dept));
     dispatch(setShowPortal(true));

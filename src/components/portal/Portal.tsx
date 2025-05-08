@@ -1,6 +1,7 @@
 import { createPortal } from "react-dom";
 import { getDeptItems, getSubDeptItems } from "../../api/hourly";
 import { useAppDispatch, useAppSelector } from "../../hooks";
+import { setDeptItems } from "../../features/hourlySlice";
 import { useEffect } from "react";
 
 interface PortalProps {
@@ -12,29 +13,34 @@ interface PortalProps {
 
 const Portal = ({ title, className = "", isShowing, onClose }: PortalProps) => {
   const dispatch = useAppDispatch();
-  const { url } = useAppSelector((state) => state.app);
-  const { portalType, selectedDept, selectedSubDept } = useAppSelector((state) => state.hourly);
+  const { url, date, selectedHour } = useAppSelector((state) => state.app);
+  const { portalType, selectedDept, selectedSubDept, deptItems } =
+    useAppSelector((state) => state.hourly);
 
   useEffect(() => {
     if (portalType === "Dept") {
-      getDeptItems(url, '').then((resp) => {
+      getDeptItems(url, date, selectedHour, selectedDept).then((resp) => {
         const j = resp.data;
         if (j.error === 0) {
           dispatch(setDeptItems(j.items));
         }
       });
     } else if (portalType === "Sub Dept") {
-      getSubDeptItems(selectedSubDept).then((resp) => {
+      getSubDeptItems(
+        selectedSubDept,
+        date,
+        selectedHour,
+        selectedSubDept
+      ).then((resp) => {
         const j = resp.data;
         if (j.error === 0) {
-          dispatch(setSubDeptItems(j.items));
+          dispatch(setDeptItems(j.items));
         }
       });
     }
   }, [portalType, selectedDept, selectedSubDept]);
-  
-  if (!isShowing) return null;
 
+  if (!isShowing) return null;
   return createPortal(
     <div
       className={`fixed inset-0 z-50 bg-black/25 flex items-center justify-center`}
@@ -50,9 +56,13 @@ const Portal = ({ title, className = "", isShowing, onClose }: PortalProps) => {
         </div>
 
         {/* Data content here */}
-        <div className={`${className}`}>
-
-        </div>
+        {deptItems.length > 0 ? (
+          <div className={`${className}`}>
+            {deptItems.map((item, i) => (
+              <div></div>
+            ))}
+          </div>
+        ) : null}
       </div>
     </div>,
     document.body
