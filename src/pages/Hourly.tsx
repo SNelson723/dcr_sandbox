@@ -31,7 +31,7 @@ const Hourly = ({ title = "Hourly" }: HourlyProps) => {
   };
   const ref = useRef<HTMLDivElement>(null);
   return (
-    <>
+    <div className="min-h-[65vh] max-h-[65vh] animate-fadeIn">
       <Portal title={portalTitle} onClose={onClose} isShowing={showPortal} />
       <div
         ref={ref}
@@ -44,7 +44,7 @@ const Hourly = ({ title = "Hourly" }: HourlyProps) => {
         <HourlyItems />
         <TopHourlyCats />
       </div>
-    </>
+    </div>
   );
 };
 

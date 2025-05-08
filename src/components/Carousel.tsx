@@ -15,7 +15,6 @@ const Carousel = ({ children }: CarouselProps) => {
   const next = () => goTo(visibleIndex + 1);
   const prev = () => goTo(visibleIndex - 1);
 
-  // Got to set the title based on the index of the slide
   useEffect(() => {
     const child = React.Children.toArray(children)[visibleIndex];
     if (React.isValidElement(child) && (child as React.ReactElement<{ title?: string }>).props.title) {
@@ -25,7 +24,7 @@ const Carousel = ({ children }: CarouselProps) => {
   }, [visibleIndex]);
 
   return (
-    <div className="relative max-w-[70vw] overflow-hidden max-h-[70vh] h-[70vh]">
+    <div className="relative max-w-[70vw] overflow-hidden max-h-[70vh] min-h-[70vh]">
       <div
         className="flex transition-transform duration-500"
         style={{ transform: `translateX(-${visibleIndex * 100}%)` }}
@@ -38,7 +37,6 @@ const Carousel = ({ children }: CarouselProps) => {
       </div>
 
       {/* buttons and dots */}
-
       <div className="absolute bottom-0 left-1/2 z-50 -translate-x-1/2 mb-4 flex gap-2">
         <button
           onClick={prev}

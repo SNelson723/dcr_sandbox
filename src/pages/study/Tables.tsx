@@ -24,10 +24,10 @@ const Tables = ({ title = "Tables" }: Props) => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center h-full w-full">
+    <div className="flex flex-col items-center justify-center h-full w-full border-slate-50 rounded-lg">
       <h1 className="text-2xl font-bold text-slate-50">{title}</h1>
       <div className="w-full h-full flex flex-col items-center justify-center">
-        <p className="text-slate-50">This is the tables page</p>
+        <p className="text-slate-50">This is the tables slide</p>
       </div>
     </div>
   );

@@ -5,10 +5,7 @@ import Hourly from "../Hourly";
 
 const StudyGuide = () => {
   return (
-    <div className="h-full">
-      <div className="text-xl my-10 font-semibold">Study Guide page</div>
-
-      {/* Carousel practice */}
+    <div className="h-full mt-20">
       <div className="text-black">
         <Carousel>
           <Tables title="Tables Guide" />
