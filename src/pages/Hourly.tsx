@@ -19,7 +19,8 @@ interface HourlyProps {
 }
 
 const Hourly = ({ title = "Hourly" }: HourlyProps) => {
-  const { showPortal, portalTitle } = useAppSelector((state) => state.hourly);
+  const { showPortal, portalTitle, depts, subdepts, cats, topItems } =
+    useAppSelector((state) => state.hourly);
   const dispatch = useAppDispatch();
 
   const onClose = () => {
@@ -30,8 +31,17 @@ const Hourly = ({ title = "Hourly" }: HourlyProps) => {
     dispatch(setSelectedSubDept(""));
   };
   const ref = useRef<HTMLDivElement>(null);
+
+  const render = () => {
+    if (depts.length === 0) return false;
+    if (subdepts.length === 0) return false;
+    if (cats.length === 0) return false;
+    if (topItems.length === 0) return false;
+    return true;
+  };
   return (
-    <div className="min-h-[65vh] max-h-[65vh] animate-fadeIn">
+
+    <div className={`min-h-[65vh] max-h-[65vh] animate-fadeIn ${render() ? "" : "hidden"}`}>
       <Portal title={portalTitle} onClose={onClose} isShowing={showPortal} />
       <div
         ref={ref}

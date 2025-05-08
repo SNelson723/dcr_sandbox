@@ -8,9 +8,9 @@ const StudyGuide = () => {
     <div className="h-full mt-20">
       <div className="text-black">
         <Carousel>
+          <Hourly title="Hourly Sales" />
           <Tables title="Tables Guide" />
           <Fields title="Fields Guide" />
-          <Hourly title="Hourly Sales" />
         </Carousel>
       </div>
     </div>

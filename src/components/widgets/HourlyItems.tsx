@@ -11,6 +11,7 @@ const HourlyItems = () => {
   const { url, date, selectedHour } = useAppSelector((state) => state.app);
   const [showing, setShowing] = useState<string>("top");
   const [widgetData, setWidgetData] = useState<HourlyItem[]>([]);
+  const [title, setTitle] = useState<string>("Top 10 Hourly Items");
 
   useEffect(() => {
     if (showing === "top") {
@@ -20,6 +21,7 @@ const HourlyItems = () => {
           if (j.error === 0) {
             dispatch(setTopItems(j.items));
             setWidgetData(j.items);
+            setTitle("Top 10 Hourly Items");
           }
         })
         .catch((e) => console.log(e.message));
@@ -30,6 +32,7 @@ const HourlyItems = () => {
           if (j.error === 0) {
             dispatch(setBottomItems(j.items));
             setWidgetData(j.items);
+            setTitle("Bottom 10 Hourly Items");
           }
         })
         .catch((e) => console.log(e.message));
@@ -41,7 +44,7 @@ const HourlyItems = () => {
       {widgetData.length ? (
         <div className="flex flex-col p-4 row-span-2 min-h-[610px] max-h-[610px] bg-white rounded-lg shadow-md text-black">
           <h2 className="border-b border-b-black font-semibold pb-[1px]">
-            Hourly Items
+            {title}
           </h2>
           <div className="flex flex-col w-full divide-gray-950 divide-y border-b border-b-gray-950">
             {widgetData.map((item, i) => (
