@@ -45,7 +45,7 @@ const TopHourlySubDepts = () => {
 
   const openPortal = (dept: string, id: string) => {
     dispatch(setSelectedSubDept(id));
-    dispatch(setPortalType("Dept"));
+    dispatch(setPortalType("Sub Dept"));
     dispatch(setPortalTitle(dept));
     dispatch(setShowPortal(true));
   };

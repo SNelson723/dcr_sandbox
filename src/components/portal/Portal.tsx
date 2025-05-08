@@ -3,6 +3,7 @@ import { getDeptItems, getSubDeptItems } from "../../api/hourly";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { setDeptItems } from "../../features/hourlySlice";
 import { useEffect } from "react";
+import { formatCurrency } from "../../utils";
 
 interface PortalProps {
   title: string;
@@ -50,16 +51,24 @@ const Portal = ({ title, className = "", isShowing, onClose }: PortalProps) => {
         className="bg-white rounded-lg shadow-lg p-4"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="mb-2 font-semibold text-center border-b border-b-black">
-          <span>{portalType} Items: </span>
-          <span>{title}</span>
+        <div className="font-semibold flex border-b border-b-black">
+          <span className="w-1/3">{portalType} Items: </span>
+          <span className="w-1/3 text-center">{title}</span>
+          <span className="w-1/3 text-right">Hour: {selectedHour}</span>
         </div>
 
-        {/* Data content here */}
         {deptItems.length > 0 ? (
-          <div className={`${className}`}>
+          <div className={`${className} text-sm divide-y divide-gray-950 border-b border-b-black`}>
             {deptItems.map((item, i) => (
-              <div></div>
+              <div
+                key={i}
+                className="grid grid-cols-[1fr_0.5fr_0.5fr] gap-2 p-1 odd:bg-blue-200 even:bg-white"
+              >
+                <span className="truncate">{item.f1041}</span>
+                <span className="text-right">{item.f254.split(" ")[0]}</span>
+                <span className="text-right">{formatCurrency(item.f65)}</span>
+                {/* <span className="text-right">{item.}</span> */}
+              </div>
             ))}
           </div>
         ) : null}
