@@ -23,23 +23,23 @@ export type TableInfo = {
 };
 
 export type HourlyDept = {
-  f65: string;
-  f64: string;
-  f03: string;
-  f238: string;
   f254: string;
-  hour: string;
   f1056: string;
+  f64: string;
+  f65: string;
+  f67: string;
+  f238: string;
+  f03: string;
 }
 
 export type HourlySubDept = {
-  f65: string;
-  f64: string;
-  f04: string;
-  f1022: string;
   f254: string;
-  hour: string;
   f1056: string;
+  f64: string;
+  f65: string;
+  f67: string;
+  f1022: string;
+  f04: string;
 }
 
 export type HourlyCat = {
