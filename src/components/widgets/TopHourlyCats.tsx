@@ -12,7 +12,7 @@ const TopHourlyCats = () => {
   const [total, setTotal] = useState<number>(0);
 
   useEffect(() => {
-    getTopHourlyCats(url, "5/5/2025", "11")
+    getTopHourlyCats(url, "5/8/2025", "10")
       .then((resp) => {
         const j = resp.data;
         if (j.error === 0) {

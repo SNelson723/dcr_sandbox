@@ -23,7 +23,7 @@ const TopHourlyDepts = () => {
   }, [depts]);
 
   const getData = () => {
-    getTopHourlyDepts(url, "5/5/2025", "11")
+    getTopHourlyDepts(url, "5/8/2025", "10")
       .then((resp) => {
         const j = resp.data;
         if (j.error === 0) {
