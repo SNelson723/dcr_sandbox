@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getTopHourlyDepts } from "../../api/hourly";
-import { setDepts } from "../../features/hourlySlice";
+import { setDepts, setShowPortal } from "../../features/hourlySlice";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { HourlyDept, JsonError } from "../../types";
 import { formatCurrency } from "../../utils";
@@ -37,6 +37,8 @@ const TopHourlyDepts = () => {
       .catch((e: JsonError) => console.error(e.message));
   };
 
+  const openPortal = () => dispatch(setShowPortal(true));
+
   return (
     <>
       {depts.length && total > 0 ? (
@@ -50,7 +52,9 @@ const TopHourlyDepts = () => {
                 className="grid grid-cols-[50px_120px_1fr_35px] gap-2 items-center"
                 key={`dept_${i}`}
               >
-                <div className="text-sm text-right">{dept.f238}</div>
+                <div className="text-sm text-right cursor-pointer" onClick={openPortal}>
+                  {dept.f238}
+                </div>
                 <GraphBar
                   current={parseFloat(dept.f65)}
                   max={total}

@@ -14,6 +14,7 @@ export interface HourlyState {
   topItems: HourlyItem[];
   bottomItems: HourlyItem[];
   tenders: HourlyTender[];
+  showPortal: boolean;
 }
 
 const initialState: HourlyState = {
@@ -23,6 +24,7 @@ const initialState: HourlyState = {
   topItems: [],
   bottomItems: [],
   tenders: [],
+  showPortal: false,
 };
 
 const hourlySlice = createSlice({
@@ -47,6 +49,10 @@ const hourlySlice = createSlice({
     setTenders: (state, action: PayloadAction<HourlyTender[]>) => {
       state.tenders = action.payload;
     },
+    setShowPortal: (state, action: PayloadAction<boolean>) => {
+      state.showPortal = action.payload;
+    },
+
   },
 });
 
@@ -57,5 +63,6 @@ export const {
   setTopItems,
   setBottomItems,
   setTenders,
+  setShowPortal,
 } = hourlySlice.actions;
 export default hourlySlice.reducer;
