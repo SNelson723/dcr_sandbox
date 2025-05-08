@@ -5,6 +5,7 @@ import {
   HourlyCat,
   HourlyItem,
   HourlyTender,
+  DeptItem,
 } from "../types";
 
 export interface HourlyState {
@@ -15,6 +16,7 @@ export interface HourlyState {
   bottomItems: HourlyItem[];
   tenders: HourlyTender[];
   showPortal: boolean;
+  deptItems: DeptItem[];
 }
 
 const initialState: HourlyState = {
@@ -25,6 +27,7 @@ const initialState: HourlyState = {
   bottomItems: [],
   tenders: [],
   showPortal: false,
+  deptItems: [],
 };
 
 const hourlySlice = createSlice({
@@ -52,7 +55,9 @@ const hourlySlice = createSlice({
     setShowPortal: (state, action: PayloadAction<boolean>) => {
       state.showPortal = action.payload;
     },
-
+    setDeptItems: (state, action: PayloadAction<DeptItem[]>) => {
+      state.deptItems = action.payload;
+    },
   },
 });
 
@@ -64,5 +69,6 @@ export const {
   setBottomItems,
   setTenders,
   setShowPortal,
+  setDeptItems,
 } = hourlySlice.actions;
 export default hourlySlice.reducer;

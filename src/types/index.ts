@@ -61,6 +61,16 @@ export type HourlyItem = {
   f1041: string;
   f64: string;
   f65: string;
+  f254: string;
+}
+
+export type DeptItem = {
+  f03: string;
+  f04: string;
+  f1041: string;
+  f254: string;
+  f65: string;
+  hour: string;
 }
 
 export type JsonError = {
