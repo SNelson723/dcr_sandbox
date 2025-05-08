@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home.tsx";
 
 import StudyGuide from "./pages/study/StudyGuide.tsx";
-import Hourly from "./pages/Hourly.tsx";
+// import Hourly from "./pages/Hourly.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -17,8 +17,8 @@ createRoot(document.getElementById("root")!).render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />} />
-          <Route path="study" element={<StudyGuide />} />
-          <Route path="hourly" element={<Hourly />} />
+          <Route path="carousel" element={<StudyGuide />} />
+          {/* <Route path="hourly" element={<Hourly />} /> */}
         </Route>
       </Routes>
       </BrowserRouter>

@@ -11,8 +11,8 @@ interface NavLinkProps {
 
 const navLinks: NavLinkProps[] = [
   { to: "/", label: "Home" },
-  { to: "study", label: "Study" },
-  { to: "hourly", label: "Hourly" },
+  { to: "carousel", label: "Carousel" },
+  // { to: "hourly", label: "Hourly" },
 ];
 
 // The isActive prop is used to determine if the link is currently active
