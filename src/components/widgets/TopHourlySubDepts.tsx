@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getTopHourlySubDepts } from "../../api/hourly";
-import { setSubDepts } from "../../features/hourlySlice";
+import { setPortalTitle, setPortalType, setSelectedSubDept, setShowPortal, setSubDepts } from "../../features/hourlySlice";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { HourlySubDept, JsonError } from "../../types";
 import { formatCurrency } from "../../utils";
@@ -37,6 +37,13 @@ const TopHourlySubDepts = () => {
       .catch((e: JsonError) => console.error(e.message));
   };
 
+  const openPortal = (dept: string, id: string) => {
+    dispatch(setSelectedSubDept(id))
+    dispatch(setPortalType("Dept"));
+    dispatch(setPortalTitle(dept));
+    dispatch(setShowPortal(true));
+  };
+
   return (
     <>
       {subdepts.length && total > 0 ? (
@@ -52,7 +59,12 @@ const TopHourlySubDepts = () => {
                 className="grid grid-cols-[50px_120px_1fr_35px] gap-2 items-center"
                 key={`dept_${i}`}
               >
-                <div className="text-sm text-right">{dept.f1022}</div>
+                <div
+                  className="text-sm text-right cursor-pointer"
+                  onClick={() => openPortal(dept.f1022, dept.f04)}
+                >
+                  {dept.f1022}
+                </div>
                 <GraphBar
                   current={parseFloat(dept.f65)}
                   max={total}

@@ -6,21 +6,33 @@ import HourlyItems from "../components/widgets/HourlyItems";
 import { useRef } from "react";
 import Portal from "../components/portal/Portal";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { setShowPortal } from "../features/hourlySlice";
+import {
+  setPortalTitle,
+  setPortalType,
+  setSelectedDept,
+  setSelectedSubDept,
+  setShowPortal,
+} from "../features/hourlySlice";
 
 interface HourlyProps {
   title?: string;
 }
 
 const Hourly = ({ title = "Hourly" }: HourlyProps) => {
-  const { showPortal } = useAppSelector((state) => state.hourly);
+  const { showPortal, portalTitle } = useAppSelector((state) => state.hourly);
   const dispatch = useAppDispatch();
 
-  const onClose = () => dispatch(setShowPortal(false));
+  const onClose = () => {
+    dispatch(setShowPortal(false));
+    dispatch(setPortalTitle(""));
+    dispatch(setPortalType(""));
+    dispatch(setSelectedDept(""));
+    dispatch(setSelectedSubDept(""));
+  };
   const ref = useRef<HTMLDivElement>(null);
   return (
     <>
-      <Portal id="testing" onClose={onClose} isShowing={showPortal} />
+      <Portal title={portalTitle} onClose={onClose} isShowing={showPortal} />
       <div
         ref={ref}
         id={title}

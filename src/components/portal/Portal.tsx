@@ -1,41 +1,58 @@
 import { createPortal } from "react-dom";
+import { getDeptItems, getSubDeptItems } from "../../api/hourly";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useEffect } from "react";
 
 interface PortalProps {
-  id: string;
+  title: string;
   className?: string;
-  // data: T[];
   isShowing: boolean;
   onClose: () => void;
 }
 
-const Portal = ({ id, className = "", isShowing, onClose }: PortalProps) => {
+const Portal = ({ title, className = "", isShowing, onClose }: PortalProps) => {
+  const dispatch = useAppDispatch();
+  const { url } = useAppSelector((state) => state.app);
+  const { portalType, selectedDept, selectedSubDept } = useAppSelector((state) => state.hourly);
+
+  useEffect(() => {
+    if (portalType === "Dept") {
+      getDeptItems(url, '').then((resp) => {
+        const j = resp.data;
+        if (j.error === 0) {
+          dispatch(setDeptItems(j.items));
+        }
+      });
+    } else if (portalType === "Sub Dept") {
+      getSubDeptItems(selectedSubDept).then((resp) => {
+        const j = resp.data;
+        if (j.error === 0) {
+          dispatch(setSubDeptItems(j.items));
+        }
+      });
+    }
+  }, [portalType, selectedDept, selectedSubDept]);
+  
   if (!isShowing) return null;
 
   return createPortal(
     <div
-      className={`fixed inset-0 z-50 bg-black/25 flex items-center justify-center ${className}`}
+      className={`fixed inset-0 z-50 bg-black/25 flex items-center justify-center`}
       onClick={onClose}
     >
       <div
         className="bg-white rounded-lg shadow-lg p-4"
-        // onClick={(e) => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}
       >
         <div className="mb-2 font-semibold text-center border-b border-b-black">
-          {id}
+          <span>{portalType} Items: </span>
+          <span>{title}</span>
         </div>
-        {/* <div className="grid grid-cols-4 gap-2">
-          {data.map((item, index) => (
-            <div key={index} className="rounded-lg shadow-lg">
-              <div className="border-b flex justify-between items-center py-1 px-3">
-                <div className="text-sm">{item.name}</div>
-                <div className="text-sm text-center">{item.value}</div>
-              </div>
-              <div className="text-lg text-center font-semibold">
-                {item.value}
-              </div>
-            </div>
-          ))}
-        </div> */}
+
+        {/* Data content here */}
+        <div className={`${className}`}>
+
+        </div>
       </div>
     </div>,
     document.body

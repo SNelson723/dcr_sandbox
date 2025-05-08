@@ -3,11 +3,15 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export interface AppState {
   url: string;
   carouselTitle: string;
+  date: string;
+  selectedHour: string;
 };
 
 const initialState: AppState = {
   url: "https://localhost:44324/api/",
-  carouselTitle: ""
+  carouselTitle: "",
+  date: "5/8/2025",
+  selectedHour: "10",
 };
 
 const appSlice = createSlice({

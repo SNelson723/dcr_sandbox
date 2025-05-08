@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import { getTopHourlyDepts } from "../../api/hourly";
-import { setDepts, setShowPortal } from "../../features/hourlySlice";
+import {
+  setDepts,
+  setPortalTitle,
+  setPortalType,
+  setSelectedDept,
+  setShowPortal,
+} from "../../features/hourlySlice";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { HourlyDept, JsonError } from "../../types";
 import { formatCurrency } from "../../utils";
@@ -37,7 +43,12 @@ const TopHourlyDepts = () => {
       .catch((e: JsonError) => console.error(e.message));
   };
 
-  const openPortal = () => dispatch(setShowPortal(true));
+  const openPortal = (dept: string, id: string) => {
+    dispatch(setSelectedDept(id))
+    dispatch(setPortalType("Dept"));
+    dispatch(setPortalTitle(dept));
+    dispatch(setShowPortal(true));
+  };
 
   return (
     <>
@@ -52,7 +63,10 @@ const TopHourlyDepts = () => {
                 className="grid grid-cols-[50px_120px_1fr_35px] gap-2 items-center"
                 key={`dept_${i}`}
               >
-                <div className="text-sm text-right cursor-pointer" onClick={openPortal}>
+                <div
+                  className="text-sm text-right cursor-pointer"
+                  onClick={() => openPortal(dept.f238, dept.f03)}
+                >
                   {dept.f238}
                 </div>
                 <GraphBar
