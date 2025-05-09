@@ -9,8 +9,8 @@ const StudyGuide = () => {
       <div className="text-black">
         <Carousel>
           <Hourly title="Hourly Sales" />
-          <Tables title="Tables Guide" />
-          <Fields title="Fields Guide" />
+          <Tables title="Tables Quiz" />
+          <Fields title="Fields Quiz" />
         </Carousel>
       </div>
     </div>

@@ -19,7 +19,6 @@ const GraphBar = ({ current, max, className = "", widget }: GraphBarProps) => {
   useEffect(() => {
     setProgress(getClampedPercent(current));
   }, [current, max]);
-  console.log(className);
 
   return (
     <div
