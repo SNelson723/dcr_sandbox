@@ -58,7 +58,7 @@ const TopHourlyTenders = () => {
       {css && (
         <div className="rounded-lg shadow-lg  bg-white text-black p-4">
           <div className="mb-2 font-semibold border-b border-b-black">
-            Tenders
+            Tender
           </div>
           <div className="flex md:my-3">
             <div

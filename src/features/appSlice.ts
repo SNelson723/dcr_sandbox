@@ -10,8 +10,8 @@ export interface AppState {
 const initialState: AppState = {
   url: "https://localhost:44324/api/",
   carouselTitle: "",
-  date: "5/8/2025",
-  selectedHour: "10",
+  date: "5/9/2025",
+  selectedHour: "15",
 };
 
 const appSlice = createSlice({

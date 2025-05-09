@@ -41,7 +41,7 @@ const TopHourlyCats = () => {
   return (
     <div className={`${isMobile ? "" : "col-span-3"} rounded-lg shadow-lg bg-white text-black p-4`}>
       <div className="mb-2 font-semibold  border-b border-b-black">
-        Top Hourly Cats
+        Categories
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
         {cats.map((cat, i) => (

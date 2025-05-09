@@ -11,7 +11,7 @@ const HourlyItems = () => {
   const { url, date, selectedHour } = useAppSelector((state) => state.app);
   const [showing, setShowing] = useState<string>("top");
   const [widgetData, setWidgetData] = useState<HourlyItem[]>([]);
-  const [title, setTitle] = useState<string>("Top 10 Hourly Items");
+  const [title, setTitle] = useState<string>("Top 10 Items");
 
   useEffect(() => {
     if (showing === "top") {
@@ -21,7 +21,7 @@ const HourlyItems = () => {
           if (j.error === 0) {
             dispatch(setTopItems(j.items));
             setWidgetData(j.items);
-            setTitle("Top 10 Hourly Items");
+            setTitle("Top 10 Items");
           }
         })
         .catch((e) => console.log(e.message));
@@ -32,7 +32,7 @@ const HourlyItems = () => {
           if (j.error === 0) {
             dispatch(setBottomItems(j.items));
             setWidgetData(j.items);
-            setTitle("Bottom 10 Hourly Items");
+            setTitle("Bottom 10 Items");
           }
         })
         .catch((e) => console.log(e.message));
