@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Answer, JsonError, Table } from "../../types";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { getTables } from "../../api/tables";
-import { setTables } from "../../features/tableSlice";
+import { setTables, setTableScore } from "../../features/tableSlice";
 
 type Props = {
   title?: string;
@@ -11,7 +11,7 @@ type Props = {
 const Tables = ({ title = "Table" }: Props) => {
   const dispatch = useAppDispatch();
   const { url } = useAppSelector((state) => state.app);
-  const { tables } = useAppSelector((state) => state.table);
+  const { tables, tableScore } = useAppSelector((state) => state.table);
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState<Table>({
     alias: "",
@@ -71,6 +71,7 @@ const Tables = ({ title = "Table" }: Props) => {
     answer: Answer
   ) => {
     if (answer.answer.name === currentQuestion.name) {
+      dispatch(setTableScore(tableScore + 1));
       e.currentTarget.classList.add("bg-emerald-500");
     } else {
       e.currentTarget.classList.add("bg-orange-500");
@@ -81,7 +82,12 @@ const Tables = ({ title = "Table" }: Props) => {
   return (
     <div className="flex flex-col items-center justify-center h-full w-full ">
       <div className="w-full h-full flex flex-col items-center justify-center">
-        <h1 className="text-2xl font-bold text-white mb-8">{title}</h1>
+        <div className="flex justify-between gap-8 w-1/2 px-1 mb-4">
+          <h1 className="text-2xl font-bold text-white">{title}</h1>
+          <h1 className="text-2xl font-bold text-white">
+            Score: {tableScore}
+          </h1>
+        </div>
         <div className="bg-slate-50 rounded-lg shadow-lg p-4 w-1/2">
           <div className="mb-4 font-semibold border-b border-b-black text-center">
             Table: {currentQuestion ? currentQuestion.name : "Loading..."}
