@@ -30,11 +30,9 @@ const TopHourlyCats = () => {
 
   const getClampedPercent = (val: number) => {
     if (total <= 0) return 0;
-    const percent = Math.round(
-      (Math.max(0, Math.min(val, total)) / total) * 100
-    );
+    const percent = (Math.max(0, Math.min(val, total)) / total) * 100;
     const result = Math.min(100, Math.max(0, percent));
-    return `${result}%`;
+    return `${result.toFixed(2)}%`;
   };
 
   return (
