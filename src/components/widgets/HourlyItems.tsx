@@ -42,14 +42,14 @@ const HourlyItems = () => {
   return (
     <>
       {widgetData.length ? (
-        <div className="flex flex-col p-4 row-span-2 min-h-[610px] max-h-[610px] bg-white rounded-lg shadow-md text-black">
+        <div className="flex flex-col p-4 md:row-span-2 max-h-[610px] bg-white rounded-lg shadow-md text-black transition-all duration-200">
           <h2 className="border-b border-b-black font-semibold pb-[1px]">
             {title}
           </h2>
           <div className="flex flex-col w-full divide-gray-950 divide-y border-b border-b-gray-950">
             {widgetData.map((item, i) => (
               <div
-                className="grid grid-cols-[1fr_2fr_1fr_0.5fr] p-1 items-center odd:bg-blue-200 even:bg-white"
+                className={`grid grid-cols-[1fr_2fr_1fr_0.5fr] px-1 py-0.5 items-center ${showing === "top" ? "odd:bg-emerald-200" : "odd:bg-blue-200"} even:bg-white`}
                 key={`dept_${i}`}
               >
                 {/* truncate => this works for not wrapping text and shows the ellipses */}
@@ -59,20 +59,20 @@ const HourlyItems = () => {
               </div>
             ))}
           </div>
-          <div className="grid grid-cols-2 mb-4 mt-2 ">
+          <div className="grid grid-cols-2 mb-4 my-4 ">
             <div className="px-2 py-3 rounded-lg shadow text-center">
               <div>Total Sales</div>
               <div className="text-lg font-semibold">
                 {formatCurrency(totalSales(widgetData))}
               </div>
             </div>
-            <div className="px-2 py-3 rounded-lg shadow text-center">
+            <div className="px-2 py-4 rounded-lg shadow text-center">
               <div>Total Qty</div>
               <div className="text-lg font-semibold">
                 {totalQty(widgetData)}
               </div>
             </div>
-            <div className="px-2 py-3 rounded-lg shadow text-center">
+            <div className="px-2 py-4 rounded-lg shadow text-center">
               <div>Average Sales</div>
               <div className="text-lg font-semibold">
                 {formatCurrency(avg(widgetData))}
@@ -87,17 +87,13 @@ const HourlyItems = () => {
           </div>
           <div className="flex items-center mb-2 gap-3">
             <button
-              className={`${
-                showing === "top" ? "btn-themeGreen" : "btn-themeBlue"
-              } w-1/2`}
+              className={`btn-themeGreen w-1/2`}
               onClick={() => setShowing("top")}
             >
               Top 10
             </button>
             <button
-              className={`${
-                showing === "bottom" ? "btn-themeGreen" : "btn-themeBlue"
-              } w-1/2`}
+              className={`btn-themeBlue w-1/2`}
               onClick={() => setShowing("bottom")}
             >
               Bottom 10

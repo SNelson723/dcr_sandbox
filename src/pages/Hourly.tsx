@@ -3,7 +3,7 @@ import TopHourlyDepts from "../components/widgets/TopHourlyDepts";
 import TopHourlySubDepts from "../components/widgets/TopHourlySubDepts";
 import TopHourlyTenders from "../components/widgets/TopHourlyTenders";
 import HourlyItems from "../components/widgets/HourlyItems";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Portal from "../components/portal/Portal";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import {
@@ -13,6 +13,7 @@ import {
   setSelectedSubDept,
   setShowPortal,
 } from "../features/hourlySlice";
+import Carousel from "../components/Carousel";
 
 interface HourlyProps {
   title?: string;
@@ -22,6 +23,8 @@ const Hourly = ({ title = "Hourly" }: HourlyProps) => {
   const { showPortal, portalTitle, depts, subdepts, cats, topItems } =
     useAppSelector((state) => state.hourly);
   const dispatch = useAppDispatch();
+  const [screenWidth, setScreenWidth] = useState<number>(screen.width);
+  console.log(screenWidth);
 
   const onClose = () => {
     dispatch(setShowPortal(false));
@@ -40,13 +43,16 @@ const Hourly = ({ title = "Hourly" }: HourlyProps) => {
     return true;
   };
   return (
-
-    <div className={`min-h-[65vh] max-h-[65vh] animate-fadeIn ${render() ? "" : "hidden"}`}>
+    <div
+      className={`min-h-[65vh] max-h-[65vh] animate-fadeIn ${
+        render() ? "" : "hidden"
+      } transition-all duration-200 no-scrollbar overflow-y-scroll`}
+    >
       <Portal title={portalTitle} onClose={onClose} isShowing={showPortal} />
       <div
         ref={ref}
         id={title}
-        className="grid grid-cols-4 gap-2 items-center justify-center data-[query-id=hourly]"
+        className="grid grid-cols-1 px-2 md:px-0 md:w-full md:grid-cols-4 gap-2 items-center justify-center data-[query-id=hourly]"
       >
         <TopHourlyDepts />
         <TopHourlySubDepts />

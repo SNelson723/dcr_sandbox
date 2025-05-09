@@ -64,7 +64,7 @@ const TopHourlySubDepts = () => {
                 key={`dept_${i}`}
               >
                 <div
-                  className="text-sm text-right cursor-pointer"
+                  className="text-sm text-left cursor-pointer truncate"
                   onClick={() => openPortal(dept.f1022, dept.f04)}
                 >
                   {dept.f1022}

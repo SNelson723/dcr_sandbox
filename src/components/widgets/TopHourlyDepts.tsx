@@ -79,7 +79,7 @@ const TopHourlyDepts = () => {
                 key={`dept_${i}`}
               >
                 <div
-                  className="text-sm text-right cursor-pointer"
+                  className="text-sm cursor-pointer truncate hover:bg-blue-200"
                   onClick={() => openPortal(dept.f238, dept.f03)}
                 >
                   {dept.f238}

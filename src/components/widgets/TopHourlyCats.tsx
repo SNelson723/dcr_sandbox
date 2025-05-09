@@ -11,6 +11,9 @@ const TopHourlyCats = () => {
   const { cats } = useAppSelector((state) => state.hourly);
   const [total, setTotal] = useState<number>(0);
 
+  const screenWidth = window.innerWidth;
+  const isMobile = screenWidth <= 820;
+
   useEffect(() => {
     getTopHourlyCats(url, date, selectedHour)
       .then((resp) => {
@@ -36,11 +39,11 @@ const TopHourlyCats = () => {
   };
 
   return (
-    <div className="col-span-3 rounded-lg shadow-lg bg-white text-black p-4">
+    <div className={`${isMobile ? "" : "col-span-3"} rounded-lg shadow-lg bg-white text-black p-4`}>
       <div className="mb-2 font-semibold  border-b border-b-black">
         Top Hourly Cats
       </div>
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
         {cats.map((cat, i) => (
           <div className="rounded-lg shadow-lg" key={`cat_${i}`}>
             <div className="border-b flex justify-between items-center py-1 px-3">

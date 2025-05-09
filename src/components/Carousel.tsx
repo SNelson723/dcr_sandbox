@@ -4,9 +4,11 @@ import { setCarouselTitle } from "../features/appSlice";
 
 type CarouselProps = {
   children: React.ReactNode;
+  className?: string;
+  btnDivClassName?: string;
 };
 
-const Carousel = ({ children }: CarouselProps) => {
+const Carousel = ({ children, className, btnDivClassName }: CarouselProps) => {
   const dispatch = useAppDispatch();
   const [visibleIndex, setVisibleIndex] = useState<number>(0);
 
@@ -24,7 +26,7 @@ const Carousel = ({ children }: CarouselProps) => {
   }, [visibleIndex]);
 
   return (
-    <div className="relative md:max-w-[70vw] overflow-hidden max-h-[70vh] min-h-[70vh]">
+    <div className={className}>
       <div
         className="flex transition-transform duration-500"
         style={{ transform: `translateX(-${visibleIndex * 100}%)` }}
@@ -37,7 +39,7 @@ const Carousel = ({ children }: CarouselProps) => {
       </div>
 
       {/* buttons and dots */}
-      <div className="absolute bottom-0 left-1/2 z-50 -translate-x-1/2 mb-4 flex gap-2">
+      <div className={btnDivClassName}>
         <button
           onClick={prev}
           className="absolute -left-16 top-1/2 -translate-y-1/2 z-10 bg-white py-1 px-2 hover:bg-blue-400 transition-all duration-300 rounded-full p-1 shadow"

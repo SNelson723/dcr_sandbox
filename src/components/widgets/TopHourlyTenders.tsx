@@ -5,10 +5,10 @@ import { getTopHourlyTenders } from "../../api/hourly";
 import { JsonError } from "../../types";
 
 const colors = [
-  "var(--color-blue)",
-  "var(--color-light-blue)",
   "var(--color-green)",
   "var(--color-light-green)",
+  "var(--color-blue)",
+  "var(--color-light-blue)",
   "var(--color-orange)",
   "var(--color-light-orange)",
 ];
@@ -60,7 +60,7 @@ const TopHourlyTenders = () => {
           <div className="mb-2 font-semibold border-b border-b-black">
             Tenders
           </div>
-          <div className="flex my-4">
+          <div className="flex md:my-3">
             <div
               className="w-[150px] h-[150px] mr-2 rounded-full"
               style={{
