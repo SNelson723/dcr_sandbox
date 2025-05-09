@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useAppSelector } from "../../hooks";
 
 type GraphBarProps = {
   current: number;
@@ -9,6 +10,7 @@ type GraphBarProps = {
 
 const GraphBar = ({ current, max, className = "", widget }: GraphBarProps) => {
   const [progress, setProgress] = useState<number>(0);
+  const { selectedF1034 } = useAppSelector((state) => state.hourly);
 
   const getClampedPercent = (val: number) => {
     if (max <= 0) return 0;
@@ -23,7 +25,7 @@ const GraphBar = ({ current, max, className = "", widget }: GraphBarProps) => {
   return (
     <div
       className={`relative h-8 w-full rounded-full border-2 border-black overflow-hidden text-right flex text-sm items-center ${
-        widget == "dept" ? "bg-emerald-200" : "bg-blue-200"
+        widget == "dept" && selectedF1034 == "2" ? "bg-emerald-200" : "bg-blue-200"
       }`}
     >
       <div

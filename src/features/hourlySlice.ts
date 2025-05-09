@@ -21,6 +21,7 @@ export interface HourlyState {
   selectedSubDept: string;
   portalTitle: string;
   portalType: string;
+  selectedF1034: string;
 }
 
 const initialState: HourlyState = {
@@ -36,6 +37,7 @@ const initialState: HourlyState = {
   selectedSubDept: "",
   portalTitle: "",
   portalType: "",
+  selectedF1034: "2",
 };
 
 const hourlySlice = createSlice({
@@ -78,6 +80,9 @@ const hourlySlice = createSlice({
     setPortalType: (state, action: PayloadAction<string>) => {
       state.portalType = action.payload;
     },
+    setSelectedF1034: (state, action: PayloadAction<string>) => {
+      state.selectedF1034 = action.payload;
+    },
   },
 });
 
@@ -94,5 +99,6 @@ export const {
   setSelectedSubDept,
   setPortalTitle,
   setPortalType,
+  setSelectedF1034,
 } = hourlySlice.actions;
 export default hourlySlice.reducer;

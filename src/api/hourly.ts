@@ -3,7 +3,8 @@ import axios from "axios";
 export const getTopHourlyDepts = async (
   url: string,
   date: string,
-  hour: string
+  hour: string,
+  f1034: string,
 ) => {
   const json = await axios({
     method: "GET",
@@ -14,6 +15,7 @@ export const getTopHourlyDepts = async (
     params: {
       date,
       hour,
+      f1034,
     },
   });
   return json;
