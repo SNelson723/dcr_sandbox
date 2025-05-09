@@ -24,7 +24,7 @@ const Carousel = ({ children }: CarouselProps) => {
   }, [visibleIndex]);
 
   return (
-    <div className="relative max-w-[70vw] overflow-hidden max-h-[70vh] min-h-[70vh]">
+    <div className="relative md:max-w-[70vw] overflow-hidden max-h-[70vh] min-h-[70vh]">
       <div
         className="flex transition-transform duration-500"
         style={{ transform: `translateX(-${visibleIndex * 100}%)` }}

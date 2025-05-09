@@ -54,7 +54,7 @@ const TopHourlyDepts = () => {
   return (
     <>
       {depts.length && total > 0 ? (
-        <div className="bg-white text-slate-900 p-4 rounded-lg shadow-lg animate-fadeIn">
+        <div className="bg-white text-slate-900 p-4 rounded-lg shadow-lg animate-fadeIn md:w-full">
           <div className="flex justify-between items-center mb-4 font-semibold border-b border-b-black">
             <div>Dept</div>
             <div className="flex gap-2">

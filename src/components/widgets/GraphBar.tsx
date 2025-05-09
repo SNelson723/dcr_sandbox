@@ -32,7 +32,7 @@ const GraphBar = ({ current, max, className = "", widget }: GraphBarProps) => {
         style={{ width: `${progress}%` }}
         className={`absolute h-full transition-all  duration-300 text-right ease-in-out ${className}`}
       ></div>
-      <div className="absolute right-1">{progress}%</div>
+      <div className="absolute right-1.5">{progress}%</div>
     </div>
   );
 };
