@@ -8,19 +8,20 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home.tsx";
 
 import StudyGuide from "./pages/study/StudyGuide.tsx";
+import Dashboard from "./pages/Dashboard.tsx";
 // import Hourly from "./pages/Hourly.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />}>
-          <Route index element={<Home />} />
-          <Route path="carousel" element={<StudyGuide />} />
-          {/* <Route path="hourly" element={<Hourly />} /> */}
-        </Route>
-      </Routes>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route index element={<Home />} />
+            <Route path="carousel" element={<StudyGuide />} />
+            <Route path="dashboard" element={<Dashboard />} />
+          </Route>
+        </Routes>
       </BrowserRouter>
     </Provider>
   </StrictMode>

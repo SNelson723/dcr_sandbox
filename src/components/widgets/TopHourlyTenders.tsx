@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks";
 import { setTenders } from "../../features/hourlySlice";
 import { getTopHourlyTenders } from "../../api/hourly";
 import { JsonError } from "../../types";
+import { formatCurrency } from "../../utils";
 
 const colors = [
   "var(--color-green)",
@@ -18,6 +19,7 @@ const TopHourlyTenders = () => {
   const { url, date, selectedHour } = useAppSelector((state) => state.app);
   const { tenders } = useAppSelector((state) => state.hourly);
   const [css, setCss] = useState<string>("");
+  const [showing, setShowing] = useState<string>("qty");
 
   useEffect(() => {
     getTopHourlyTenders(url, date, selectedHour)
@@ -79,7 +81,8 @@ const TopHourlyTenders = () => {
                     ></div>
                     <div className="ml-2">{tender.f1041}</div>
                   </div>
-                  <div>{tender.qty}</div>
+                  {showing == 'qty' && <div>{tender.qty}</div>}
+                  {showing == 'f65' && <div>{formatCurrency(tender.f65)}</div>}
                 </div>
               ))}
             </div>
