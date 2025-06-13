@@ -10,7 +10,7 @@ const App = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    getDashboard(awsUrl, arn, dashId).then((resp) => {
+    getDashboard(awsUrl, arn).then((resp) => {
       const j = resp.data;
       dispatch(setEmbedUrl(j.embed_url));
     });

@@ -34,7 +34,7 @@ const appSlice = createSlice({
     },
     setEmbedUrl: (state, action: PayloadAction<string>) => {
       state.embedUrl = action.payload;
-    }
+    },
   },
 });
 
