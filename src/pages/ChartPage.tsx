@@ -4,14 +4,14 @@ import { getSubSales, getDateSales } from "../api/charts";
 import { JsonError } from "../types";
 import { setSubSales, setDateSales } from "../features/chartSlice";
 import {
-  // VictoryPie,
   VictoryBar,
   VictoryChart,
   VictoryTheme,
-  // VictoryLabel,
   VictoryScatter,
   VictoryLine,
 } from "victory";
+
+import { Pie } from "@nivo/pie";
 
 const ChartPage = () => {
   const { subSales, dateSales } = useAppSelector((state) => state.chart);
@@ -98,6 +98,62 @@ const ChartPage = () => {
               style={{ data: { stroke: "#f0f1f2" } }}
             />
           </VictoryChart>
+          <Pie
+            data={subSales.map((sale) => ({
+              id: sale.sub_department_description,
+              label: sale.sub_department_description,
+              value: sale.sales,
+            }))}
+            width={600}
+            height={400}
+            margin={{ top: 40, bottom: 80 }}
+            innerRadius={0.5}
+            padAngle={0.6}
+            cornerRadius={2}
+            colors={[
+              "#10b981",
+              "#BBF7D0",
+              "#f97316",
+              "#FED7AA",
+              "#3b82f6",
+              "#BFDBFE",
+            ]}
+            activeOuterRadiusOffset={10}
+            arcLinkLabelsSkipAngle={10}
+            arcLinkLabelsTextColor="white"
+            arcLinkLabelsThickness={2}
+            arcLinkLabelsColor={{ from: "color" }}
+            arcLabelsSkipAngle={10}
+            arcLabelsTextColor={{ from: "color", modifiers: [["darker", 5]] }}
+          />
+          <Pie
+            data={dateSales.map((sale) => ({
+              id: sale.sale_date,
+              label: sale.sale_date,
+              value: sale.sales,
+            }))}
+            width={600}
+            height={400}
+            margin={{ top: 40, bottom: 80 }}
+            innerRadius={0.5}
+            padAngle={0.6}
+            cornerRadius={2}
+            colors={[
+              "#10b981",
+              "#BBF7D0",
+              "#f97316",
+              "#FED7AA",
+              "#3b82f6",
+              "#BFDBFE",
+            ]}
+            activeOuterRadiusOffset={8}
+            arcLinkLabelsSkipAngle={10}
+            arcLinkLabelsTextColor="white"
+            arcLinkLabelsThickness={2}
+            arcLinkLabelsColor={{ from: "color" }}
+            arcLabelsSkipAngle={10}
+            arcLabelsTextColor={{ from: "color", modifiers: [["darker", 5]] }}
+          />
         </div>
       ) : null}
     </div>
