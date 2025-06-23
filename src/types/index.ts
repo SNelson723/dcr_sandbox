@@ -82,3 +82,16 @@ export type Answer = {
   letter: string;
   answer: Field;
 };
+
+export type DateSale = {
+  sale_date: string;
+  sales: number;
+  quantity: number;
+}
+
+export type SubSale = {
+  sale_date: string;
+  sub_department_description: string;
+  sales: number;
+  quantity: number;
+}
