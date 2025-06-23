@@ -1,19 +1,19 @@
 import { Outlet } from "react-router";
 import NavBar from "../components/NavBar";
 import { useEffect } from "react";
-import { getDashboard } from "../api/dashboard";
-import { useAppSelector, useAppDispatch } from "../hooks";
-import { setEmbedUrl } from "../features/appSlice";
+// import { getDashboard } from "../api/dashboard";
+import { useAppSelector } from "../hooks";
+// import { setEmbedUrl } from "../features/appSlice";
 
 const App = () => {
   const { awsUrl, arn, dashId } = useAppSelector((state) => state.app);
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
   useEffect(() => {
-    getDashboard(awsUrl, arn).then((resp) => {
-      const j = resp.data;
-      dispatch(setEmbedUrl(j.embed_url));
-    });
+    // getDashboard(awsUrl, arn).then((resp) => {
+    //   const j = resp.data;
+    //   dispatch(setEmbedUrl(j.embed_url));
+    // });
   } , [awsUrl, arn, dashId]);
 
   return (

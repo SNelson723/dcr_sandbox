@@ -9,6 +9,7 @@ export interface AppState {
   arn: string;
   dashId: string;
   embedUrl: string;
+  devUrl: string;
 }
 
 const initialState: AppState = {
@@ -20,6 +21,7 @@ const initialState: AppState = {
   arn: "arn:aws:quicksight:us-east-2:747273370721:user/default/stephen",
   dashId: "c93422cb-3677-4572-bbab-72b1cf2232ee",
   embedUrl: "",
+  devUrl: "http://localhost:5005/Prod/"
 };
 
 const appSlice = createSlice({

@@ -90,7 +90,6 @@ export type DateSale = {
 }
 
 export type SubSale = {
-  sale_date: string;
   sub_department_description: string;
   sales: number;
   quantity: number;
