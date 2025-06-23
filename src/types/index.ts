@@ -95,3 +95,9 @@ export type SubSale = {
   sales: number;
   quantity: number;
 }
+
+export type ChartData = {
+  month: string;
+  avgTemp: number;
+  iceCreamSales: number;
+};
