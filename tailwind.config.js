@@ -6,6 +6,9 @@ export default {
       colors: {
         bkg: "rgb(var(--color-bkg) / <alpha-value>)",
         themeText: "rgb(var(--color-themeText) / <alpha-value>)",
+        bkgBlue: "rgb(var(--color-blue) / <alpha-value>)",
+        bkgOrange: "rgb(var(--color-orange) / <alpha-value>)",
+        bkgGreen: "rgb(var(--color-green) / <alpha-value>)",
       },
       keyframes: {
         fadeIn: {
