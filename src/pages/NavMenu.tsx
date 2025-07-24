@@ -23,7 +23,7 @@ const NavMenu = () => {
         data-open="true"
         className="
           z-50 flex flex-col py-4 justify-between absolute left-0 top-0 bg-[rgb(205,205,215)] font-medium overflow-hidden transition-all duration-500
-          data-[open=true]:w-48 data-[open=true]:h-full data-[open=true]:bg-opacity-90 data-[open=false]:w-0 data-[open=false]:h-0 data-[open=false]:opacity-0 
+          data-[open=true]:w-48 data-[open=true]:h-full data-[open=true]:bg-opacity-100 data-[open=false]:w-0 data-[open=false]:h-0 data-[open=false]:opacity-0 
         "
       >
         <div className="flex flex-col">
@@ -34,9 +34,7 @@ const NavMenu = () => {
               draggable={false}
               className={({ isActive }) =>
                 `${baseClass} ${
-                  isOpen
-                    ? "w-full opacity-100"
-                    : "w-0 opacity-0"
+                  isOpen ? "w-full opacity-100" : "w-0 opacity-0"
                 } ${isActive ? activeClass : ""}`
               }
             >
@@ -66,7 +64,8 @@ const NavMenu = () => {
       <div
         ref={iconRef}
         data-open="true"
-        className="z-50 flex absolute data-[open=true]:left-48 ml-2 data-[open=false]:left-0 top-2 rounded-full p-2 bg-white cursor-pointer transition-all duration-500"
+        className={`z-50 flex absolute data-[open=true]:left-48 ml-2 data-[open=false]:left-0 top-2 rounded-full 
+          p-2 bg-white cursor-pointer transition-all duration-500 border-2 ${isOpen ? "border-black/100" : "border-black/40"}`}
         onClick={handleRef}
       >
         <ChevronRight

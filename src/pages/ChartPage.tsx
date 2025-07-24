@@ -120,7 +120,7 @@ const ChartPage = () => {
             ]}
             activeOuterRadiusOffset={10}
             arcLinkLabelsSkipAngle={10}
-            arcLinkLabelsTextColor="white"
+            arcLinkLabelsTextColor="black"
             arcLinkLabelsThickness={2}
             arcLinkLabelsColor={{ from: "color" }}
             arcLabelsSkipAngle={10}
@@ -148,7 +148,7 @@ const ChartPage = () => {
             ]}
             activeOuterRadiusOffset={8}
             arcLinkLabelsSkipAngle={10}
-            arcLinkLabelsTextColor="white"
+            arcLinkLabelsTextColor="black"
             arcLinkLabelsThickness={2}
             arcLinkLabelsColor={{ from: "color" }}
             arcLabelsSkipAngle={10}

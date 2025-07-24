@@ -3,6 +3,10 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      colors: {
+        bkg: "rgb(var(--color-bkg) / <alpha-value>)",
+        themeText: "rgb(var(--color-themeText) / <alpha-value>)",
+      },
       keyframes: {
         fadeIn: {
           "0%": { opacity: "0" },

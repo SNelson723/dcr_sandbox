@@ -42,7 +42,7 @@ const App = () => {
   }, [awsUrl, arn, dashId]);
 
   return (
-    <div className="w-screen h-screen bg-slate-500">
+    <div className="w-screen h-screen bg-bkg text-themeText">
       <div className="w-full flex flex-col items-center">
         <NavMenu />
         <div className="flex-1 justify-center align-center place-items-center h-full">
