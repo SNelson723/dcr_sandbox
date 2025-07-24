@@ -7,8 +7,8 @@ export type NavMenuItem = {
 };
 
 export const baseClass =
-  "py-2.5 hover:bg-[rgb(174,199,242)] hover:text-black font-semibold transition-all duration-300 text-nowrap p-4 cursor-pointer flex items-center justify-start gap-3";
-export const activeClass = "bg-blue-200 text-black";
+  "py-2.5 hover:text-white hover:bg-blue-200 hover:text-black font-semibold transition-all duration-300 text-nowrap p-4 cursor-pointer flex items-center justify-start gap-3";
+export const activeClass = "bg-[rgb(174,199,242)] text-white";
 
 export interface NavLinkProps {
   to: string;
