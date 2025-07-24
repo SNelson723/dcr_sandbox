@@ -46,7 +46,7 @@ const Fields = ({ title = "Fields" }: Props) => {
 
   // get random answers (4)
   const getRandomAnswers = (arr: Field[]): Answer[] => {
-    let newAnswers: Answer[] = [];
+    const newAnswers: Answer[] = [];
 
     for (let i = 0; i < 4; i++) {
       const idx = Math.floor(Math.random() * arr.length);
@@ -100,7 +100,7 @@ const Fields = ({ title = "Fields" }: Props) => {
                 }`}
                 onClick={(e) => showCorrectAnswer(e, answer)}
               >
-                <p className="underline">{answer.letter}</p>
+                <p className="font-medium">{answer.letter}</p>
                 <p>{answer.answer.alias}</p>
               </div>
             ))}

@@ -103,7 +103,7 @@ const Tables = ({ title = "Table" }: Props) => {
                 }`}
                 onClick={(e) => showCorrectAnswer(e, answer)}
               >
-                <p className="underline">{answer.letter}</p>
+                <p className="font-medium">{answer.letter}</p>
                 <p>{answer.answer.alias}</p>
               </div>
             ))}
