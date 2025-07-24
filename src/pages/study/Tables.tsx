@@ -83,8 +83,8 @@ const Tables = ({ title = "Table" }: Props) => {
     <div className="flex flex-col items-center justify-center h-full w-full ">
       <div className="w-full h-full flex flex-col items-center justify-center">
         <div className="flex justify-between gap-8 w-1/2 px-1 mb-4">
-          <h1 className="text-2xl font-bold text-white">{title}</h1>
-          <h1 className="text-2xl font-bold text-white">
+          <h1 className="text-2xl font-bold">{title}</h1>
+          <h1 className="text-2xl font-bold">
             Score: {tableScore}
           </h1>
         </div>
