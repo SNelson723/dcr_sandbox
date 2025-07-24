@@ -14,6 +14,8 @@ const navLinks: NavLinkProps[] = [
   { to: "carousel", label: "Carousel" },
   { to: "dashboard", label: "Dashboard" },
   { to: "charts", label: "Charts" },
+  { to: "chartstwo", label: "Charts Two" },
+  { to: "navmenu", label: "Nav Menu" },
 ];
 
 // The isActive prop is used to determine if the link is currently active
