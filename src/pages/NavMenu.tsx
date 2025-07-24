@@ -45,6 +45,7 @@ const NavMenu = () => {
               `
               transition-all duration-300 text-nowrap
               py-2 px-4 cursor-pointer hover:bg-blue-200
+              ${baseClass}
               ${isOpen ? "w-full opacity-100" : "w-0 opacity-0"} ${
                 isActive ? activeClass : ""
               }`
@@ -57,7 +58,7 @@ const NavMenu = () => {
       <div
         ref={iconRef}
         data-open="true"
-        className="z-50 absolute data-[open=true]:left-48 data-[open=false]:left-4 top-4 rounded-full p-2 bg-white cursor-pointer transition-all duration-300"
+        className="z-50 absolute data-[open=true]:left-52 data-[open=false]:left-4 top-4 rounded-full p-2 bg-white cursor-pointer transition-all duration-300"
         onClick={handleRef}
       >
         <ChevronRight
