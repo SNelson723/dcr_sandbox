@@ -1,8 +1,8 @@
 import { useState, useRef } from "react";
 import ChevronRight from "../components/ChevronRight";
-import { navLinks } from "../data/navMenuData";
+import { Navigation, navLinks } from "../data/navMenuData";
 import { NavLink } from "react-router";
-import { NavLinkProps, baseClass, activeClass } from "../data/navMenuData";
+import { baseClass, activeClass } from "../data/navMenuData";
 
 const NavMenu = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -27,20 +27,19 @@ const NavMenu = () => {
         "
       >
         <div className="flex flex-col">
-          {navLinks.map((link: NavLinkProps) => (
+          {navLinks.map((link: Navigation) => (
             <NavLink
-              key={link.to}
-              to={link.to}
+              key={link.name}
+              to={link.href}
               draggable={false}
-              className={({
-                isActive,
-              }) => `transition-all duration-300 text-nowrap py-2 p-4 cursor-pointer hover:bg-blue-200
-              ${baseClass}
-              ${isOpen ? "w-full opacity-100" : "w-0 opacity-0"} ${
-                isActive ? activeClass : ""
-              }`}
+              className={({ isActive }) =>
+                `${baseClass} ${
+                  isOpen ? "w-full opacity-100" : "w-0 opacity-0"
+                } ${isActive ? activeClass : ""}`
+              }
             >
-              {link.label}
+              <link.icon className="w-6 h-6" />
+              {link.name}
             </NavLink>
           ))}
         </div>
