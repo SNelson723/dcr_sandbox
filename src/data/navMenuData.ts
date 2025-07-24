@@ -27,4 +27,5 @@ export const navLinks: NavLinkProps[] = [
   // { to: "dashboard", label: "Dashboard" },
   { to: "charts", label: "Charts" },
   { to: "chartstwo", label: "Charts Two" },
+  { to: "testing", label: "Testing" },
 ];
