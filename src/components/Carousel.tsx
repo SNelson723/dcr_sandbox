@@ -26,7 +26,7 @@ const Carousel = ({ children, className, btnDivClassName }: CarouselProps) => {
   }, [visibleIndex]);
 
   return (
-    <div className={className}>
+    <div className={`${className}`}>
       <div
         className="flex transition-transform duration-500"
         style={{ transform: `translateX(-${visibleIndex * 100}%)` }}

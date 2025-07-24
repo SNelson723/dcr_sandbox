@@ -1,11 +1,9 @@
-
 export type NavMenuItem = {
   label: string;
 };
 
-export const baseClass =
-  "border text-center py-2 px-6 md:px-10 rounded animate-all duration-500 bg-emerald-500 hover:bg-green-300 hover:text-black font-semibold";
-export const activeClass = "bg-green-300 text-black";
+export const baseClass = "py-2.5 hover:bg-[rgb(174,199,242)] hover:text-black font-semibold";
+export const activeClass = "bg-blue-200 text-black";
 
 export interface NavLinkProps {
   to: string;

@@ -23,12 +23,12 @@ body {
   --color-themeText: 30 41 59;
 }
 
-/* @layer utilities {
+@layer utilities {
   .no-scrollbar::-webkit-scrollbar {
     width: 0em;
     height: 0em;
   }
-} */
+}
 
 @layer components {
   .btn-themeBlue {

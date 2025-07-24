@@ -13,7 +13,7 @@ const StudyGuide = () => {
   const isMobile = screenWidth <= 820;
 
   return (
-    <div className="h-full mt-10 md:mt-20">
+    <div className="h-full mt-10 md:mt-20 scrollbar-none">
       <div className="text-black">
         {!isMobile ? (
           <Carousel

@@ -33,27 +33,47 @@ const NavMenu = () => {
         ref={ref}
         data-open="true"
         className="
-          z-50 flex flex-col absolute left-0 top-0 h-screen bg-gray-200 font-medium overflow-hidden transition-all duration-300
-          data-[open=true]:w-48 data-[open=true]:opacity-100 data-[open=false]:w-0 data-[open=false]:opacity-0 
+          z-50 flex flex-col py-4 justify-between absolute left-0 top-0 bg-[rgb(240,245,255)] font-medium overflow-hidden transition-all duration-300
+          data-[open=true]:w-48 data-[open=true]:h-full data-[open=true]:opacity-100 data-[open=false]:w-0 data-[open=false]:h-0 data-[open=false]:opacity-0 
         "
       >
-        {navLinks.map((link: NavLinkProps) => (
-          <NavLink
-            key={link.to}
-            to={link.to}
-            className={({ isActive }) =>
-              `
+        <div className="flex flex-col">
+          {navLinks.map((link: NavLinkProps) => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+              draggable={false}
+              className={({ isActive }) =>
+                `
               transition-all duration-300 text-nowrap
-              py-2 px-4 cursor-pointer hover:bg-blue-200
+              py-2 p-4 cursor-pointer hover:bg-blue-200
               ${baseClass}
               ${isOpen ? "w-full opacity-100" : "w-0 opacity-0"} ${
-                isActive ? activeClass : ""
-              }`
-            }
+                  isActive ? activeClass : ""
+                }`
+              }
+            >
+              {link.label}
+            </NavLink>
+          ))}
+        </div>
+
+        <div className="flex flex-col">
+          <div
+            className={`transition-all duration-300 text-nowrap p-4 cursor-pointer hover:bg-blue-200 ${baseClass} ${
+              isOpen ? "w-full opacity-100" : "w-0 opacity-0"
+            }`}
           >
-            {link.label}
-          </NavLink>
-        ))}
+            Settings
+          </div>
+          <div
+            className={`transition-all duration-300 text-nowrap py-2 px-4 cursor-pointer hover:bg-blue-200 ${baseClass} ${
+              isOpen ? "w-full opacity-100" : "w-0 opacity-0"
+            }`}
+          >
+            Sign Out
+          </div>
+        </div>
       </div>
       <div
         ref={iconRef}
