@@ -90,13 +90,13 @@ const HourlyItems = () => {
               className={`btn-themeGreen w-1/2`}
               onClick={() => setShowing("top")}
             >
-              Top 10
+              Top
             </button>
             <button
               className={`btn-themeBlue w-1/2`}
               onClick={() => setShowing("bottom")}
             >
-              Bottom 10
+              Bottom
             </button>
           </div>
         </div>

@@ -6,29 +6,18 @@ import { NavLinkProps, baseClass, activeClass } from "../data/navMenuData";
 
 const NavMenu = () => {
   const [isOpen, setIsOpen] = useState(true);
-
   const ref = useRef<HTMLDivElement>(null);
   const iconRef = useRef<HTMLDivElement>(null);
 
   const handleRef = () => {
     if (!ref.current || !iconRef.current) return;
-
-    const openOrClose = ref.current.getAttribute("data-open");
-    ref.current.setAttribute(
-      "data-open",
-      openOrClose === "true" ? "false" : "true"
-    );
-
-    const icon = iconRef.current.getAttribute("data-open");
-    iconRef.current.setAttribute(
-      "data-open",
-      icon === "true" ? "false" : "true"
-    );
+    ref.current.setAttribute("data-open", isOpen ? "false" : "true");
+    iconRef.current.setAttribute("data-open", isOpen ? "false" : "true");
     setIsOpen((v) => !v);
   };
 
   return (
-    <>
+    <div className="select-none">
       <div
         ref={ref}
         data-open="true"
@@ -43,15 +32,13 @@ const NavMenu = () => {
               key={link.to}
               to={link.to}
               draggable={false}
-              className={({ isActive }) =>
-                `
-              transition-all duration-300 text-nowrap
-              py-2 p-4 cursor-pointer hover:bg-blue-200
+              className={({
+                isActive,
+              }) => `transition-all duration-300 text-nowrap py-2 p-4 cursor-pointer hover:bg-blue-200
               ${baseClass}
               ${isOpen ? "w-full opacity-100" : "w-0 opacity-0"} ${
-                  isActive ? activeClass : ""
-                }`
-              }
+                isActive ? activeClass : ""
+              }`}
             >
               {link.label}
             </NavLink>
@@ -78,7 +65,7 @@ const NavMenu = () => {
       <div
         ref={iconRef}
         data-open="true"
-        className="z-50 absolute data-[open=true]:left-52 data-[open=false]:left-4 top-4 rounded-full p-2 bg-white cursor-pointer transition-all duration-300"
+        className="z-50 flex absolute data-[open=true]:left-48 ml-2 data-[open=false]:left-0 top-2 rounded-full p-2 bg-white cursor-pointer transition-all duration-300"
         onClick={handleRef}
       >
         <ChevronRight
@@ -87,8 +74,15 @@ const NavMenu = () => {
           } transition-all duration-300`}
           style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
         />
+        <span
+          className={`pr-2 ${
+            isOpen ? "opacity-100" : "opacity-40"
+          } transition-all duration-300`}
+        >
+          Menu
+        </span>
       </div>
-    </>
+    </div>
   );
 };
 

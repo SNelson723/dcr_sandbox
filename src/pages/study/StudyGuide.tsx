@@ -13,11 +13,11 @@ const StudyGuide = () => {
   const isMobile = screenWidth <= 820;
 
   return (
-    <div className="h-full mt-10 md:mt-20 scrollbar-none">
+    <div className="h-full mt-10 md:mt-12 scrollbar-none ">
       <div className="text-black">
         {!isMobile ? (
           <Carousel
-            className="relative md:max-w-[70vw] overflow-hidden max-h-[70vh] min-h-[70vh]"
+            className="relative md:max-w-[85vw] overflow-hidden min-h-[80vh]"
             btnDivClassName="absolute bottom-0 left-1/2 z-50 -translate-x-1/2 mb-4 flex gap-2"
           >
             <Hourly title="Hourly Sales" />

@@ -41,7 +41,7 @@ const Hourly = ({ title = "Hourly" }: HourlyProps) => {
   };
   return (
     <div
-      className={`min-h-[65vh] max-h-[65vh] animate-fadeIn ${
+      className={`min-h-[65vh] max-h-[75vh] animate-fadeIn ${
         render() ? "" : "hidden"
       } transition-all duration-200 no-scrollbar overflow-y-scroll`}
     >
