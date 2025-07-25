@@ -57,7 +57,7 @@ const Carousel = ({ children, className, btnDivClassName }: CarouselProps) => {
             key={`dot_${i}`}
             onClick={() => goTo(i)}
             className={`w-3 h-3 rounded-full mx-1 ${
-              i === visibleIndex ? "bg-emerald-500" : "bg-white"
+              i === visibleIndex ? "bg-[#3b82f6]" : "bg-blue-200"
             }`}
           />
         ))}

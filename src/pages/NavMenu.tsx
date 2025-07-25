@@ -22,7 +22,7 @@ const NavMenu = () => {
         ref={ref}
         data-open="true"
         className="
-          z-50 flex flex-col py-4 justify-between absolute left-0 top-0 bg-[rgb(225,225,235)] font-medium overflow-hidden transition-all duration-500
+          z-50 flex flex-col py-4 justify-between absolute left-0 top-0 bg-[rgb(235,235,245)] font-medium overflow-hidden transition-all duration-500
           data-[open=true]:w-48 data-[open=true]:h-full data-[open=true]:bg-opacity-100 data-[open=false]:w-0 data-[open=false]:h-0 data-[open=false]:opacity-0 
         "
       >
@@ -32,6 +32,7 @@ const NavMenu = () => {
               key={link.name}
               to={link.href}
               draggable={false}
+              onClick={handleRef}
               className={({ isActive }) =>
                 `${baseClass} ${
                   isOpen ? "w-full opacity-100" : "w-0 opacity-0"
