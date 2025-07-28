@@ -40,7 +40,7 @@ export const navLinks: Navigation[] = [
     href: "#",
     icon: UsersIcon,
     children: [
-      { name: "Charts One", href: "chart", icon: UsersIcon, childOpen: false },
+      { name: "Charts One", href: "charts", icon: UsersIcon, childOpen: false },
       {
         name: "Charts Two",
         href: "chartstwo",

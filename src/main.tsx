@@ -21,7 +21,6 @@ createRoot(document.getElementById("root")!).render(
           <Route path="/" element={<App />}>
             <Route index element={<Home />} />
             <Route path="carousel" element={<StudyGuide />} />
-            {/* <Route path="dashboard" element={<Dashboard />} /> */}
             <Route path="charts" element={<ChartPage />} />
             <Route path="chartstwo" element={<ChartPageTwo />} />
             <Route path="navmenu" element={<NavMenu />} />

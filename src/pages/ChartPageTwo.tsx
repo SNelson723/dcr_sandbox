@@ -1,15 +1,9 @@
 import { useEffect, useRef } from "react";
-import { useAppSelector, useAppDispatch } from "../hooks";
-// import { getSubSales, getDateSales } from "../api/charts";
-// import { JsonError } from "../types";
-// import { setSubSales, setDateSales } from "../features/chartSlice";
-
+import { useAppSelector } from "../hooks";
 import * as d3 from "d3";
 
 const ChartPageTwo = () => {
   const { subSales, dateSales } = useAppSelector((state) => state.chart);
-  // const { devUrl } = useAppSelector((state) => state.app);
-  // const dispatch = useAppDispatch();
 
   const gx = useRef<SVGGElement | null>(null);
   const gy = useRef<SVGGElement | null>(null);

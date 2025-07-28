@@ -55,7 +55,12 @@ const NavMenu = () => {
                 {link.name}
                 {link.children?.length && (
                   <ChevronRight
-                    className="w-4 h-4 absolute right-4"
+                    className="w-4 h-4 absolute right-4 transition-all duration-200"
+                    style={{
+                      transform: childOpen[link.name]
+                        ? "rotate(90deg)"
+                        : "rotate(0deg)",
+                    }}
                     onClick={(e) => {
                       if (!e) return;
                       e.preventDefault();
@@ -65,19 +70,24 @@ const NavMenu = () => {
                   />
                 )}
               </NavLink>
-              {/* If there are children for the main route */}
               {childOpen[link.name] ? (
                 <ul
-                  className={`pl-4 ${
-                    childOpen[link.name] ? "h-full" : "max-h-0"
-                  } duration-300`}
+                  className={`
+                  overflow-hidden
+                  transition-all duration-300
+                  pl-2
+                  ${
+                    childOpen[link.name]
+                      ? "max-h-40 opacity-100"
+                      : "max-h-0 opacity-0"
+                  }
+                `}
                 >
                   {link.children &&
                     link.children.map((child) => (
-                      <li key={child.name}>
-                        <NavLink to={child.href} className={baseClass}>
-                          {child.name}
-                        </NavLink>
+                      <li key={child.name} className={`${baseClass}`}>
+                        <child.icon className="w-5 h-5 ml-4" />
+                        <NavLink to={child.href}>{child.name}</NavLink>
                       </li>
                     ))}
                 </ul>

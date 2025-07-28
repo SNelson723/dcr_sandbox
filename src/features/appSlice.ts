@@ -6,9 +6,6 @@ export interface AppState {
   carouselTitle: string;
   date: string;
   selectedHour: string;
-  arn: string;
-  dashId: string;
-  embedUrl: string;
   devUrl: string;
 }
 
@@ -18,10 +15,7 @@ const initialState: AppState = {
   carouselTitle: "",
   date: "5/9/2025",
   selectedHour: "15",
-  arn: "arn:aws:quicksight:us-east-2:747273370721:user/default/stephen",
-  dashId: "c93422cb-3677-4572-bbab-72b1cf2232ee",
-  embedUrl: "",
-  devUrl: "http://localhost:5005/Prod/"
+  devUrl: "http://localhost:5005/Prod/",
 };
 
 const appSlice = createSlice({
@@ -34,11 +28,8 @@ const appSlice = createSlice({
     setCarouselTitle: (state, action: PayloadAction<string>) => {
       state.carouselTitle = action.payload;
     },
-    setEmbedUrl: (state, action: PayloadAction<string>) => {
-      state.embedUrl = action.payload;
-    },
   },
 });
 
-export const { setUrl, setCarouselTitle, setEmbedUrl } = appSlice.actions;
+export const { setUrl, setCarouselTitle } = appSlice.actions;
 export default appSlice.reducer;
