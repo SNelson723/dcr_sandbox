@@ -10,12 +10,15 @@ const NavMenu = () => {
   const ref = useRef<HTMLDivElement>(null);
   const iconRef = useRef<HTMLDivElement>(null);
 
-  const handleRef = (href: string) => {
-    if (href == "#") return;
-    if (!ref.current || !iconRef.current) return;
+  const handleRef = (href: string = "") => {
+    if (!ref.current || !iconRef.current || href == "#") return;
     ref.current.setAttribute("data-open", isOpen ? "false" : "true");
     iconRef.current.setAttribute("data-open", isOpen ? "false" : "true");
     setIsOpen((v) => !v);
+    // Reset childOpen state if menu is closed
+    if (isOpen) {
+      setChildOpen({});
+    }
   };
 
   const handleChildren = (label: string) => {
@@ -85,7 +88,12 @@ const NavMenu = () => {
                     link.children.map((child) => (
                       <li key={child.name} className={`${baseClass}`}>
                         <child.icon className="w-5 h-5 ml-4" />
-                        <NavLink to={child.href} onClick={() => handleRef(child.href)}>{child.name}</NavLink>
+                        <NavLink
+                          to={child.href}
+                          onClick={() => handleRef(child.href)}
+                        >
+                          {child.name}
+                        </NavLink>
                       </li>
                     ))}
                 </ul>
