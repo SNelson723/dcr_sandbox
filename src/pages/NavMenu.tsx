@@ -6,15 +6,26 @@ import { baseClass, activeClass } from "../data/navMenuData";
 
 const NavMenu = () => {
   const [isOpen, setIsOpen] = useState(true);
+  const [childOpen, setChildOpen] = useState<{ [key: string]: boolean }>({});
   const ref = useRef<HTMLDivElement>(null);
   const iconRef = useRef<HTMLDivElement>(null);
 
-  const handleRef = () => {
+  const handleRef = (hasChildren: boolean = false) => {
+    if (hasChildren) return; // Prevent toggling if the item has children
     if (!ref.current || !iconRef.current) return;
     ref.current.setAttribute("data-open", isOpen ? "false" : "true");
     iconRef.current.setAttribute("data-open", isOpen ? "false" : "true");
     setIsOpen((v) => !v);
   };
+
+  const handleChildren = (label: string) => {
+    setChildOpen((p) => ({
+      ...p,
+      [label]: !p[label],
+    }));
+  };
+
+  console.log("childOpen", childOpen);
 
   return (
     <div className="select-none">
@@ -26,24 +37,54 @@ const NavMenu = () => {
           data-[open=true]:w-48 data-[open=true]:h-full data-[open=true]:bg-opacity-100 data-[open=false]:w-0 data-[open=false]:h-0 data-[open=false]:opacity-0 
         "
       >
-        <div className="flex flex-col">
+        <ul className="flex flex-col">
           {navLinks.map((link: Navigation) => (
-            <NavLink
-              key={link.name}
-              to={link.href}
-              draggable={false}
-              onClick={handleRef}
-              className={({ isActive }) =>
-                `${baseClass} ${
-                  isOpen ? "w-full opacity-100" : "w-0 opacity-0"
-                } ${isActive ? activeClass : ""}`
-              }
-            >
-              <link.icon className="w-6 h-6" />
-              {link.name}
-            </NavLink>
+            <li key={link.name} className="w-full">
+              <NavLink
+                key={link.name}
+                to={link.href}
+                draggable={false}
+                onClick={() => handleRef(!!link.children)}
+                className={({ isActive }) =>
+                  `${baseClass} ${
+                    isOpen ? "w-full opacity-100" : "w-0 opacity-0"
+                  } ${isActive ? activeClass : ""}`
+                }
+              >
+                <link.icon className="w-6 h-6" />
+                {link.name}
+                {link.children?.length && (
+                  <ChevronRight
+                    className="w-4 h-4 absolute right-4"
+                    onClick={(e) => {
+                      if (!e) return;
+                      e.preventDefault();
+                      e.stopPropagation();
+                      handleChildren(link.name);
+                    }}
+                  />
+                )}
+              </NavLink>
+              {/* If there are children for the main route */}
+              {childOpen[link.name] ? (
+                <ul
+                  className={`pl-4 ${
+                    childOpen[link.name] ? "h-full" : "max-h-0"
+                  } duration-300`}
+                >
+                  {link.children &&
+                    link.children.map((child) => (
+                      <li key={child.name}>
+                        <NavLink to={child.href} className={baseClass}>
+                          {child.name}
+                        </NavLink>
+                      </li>
+                    ))}
+                </ul>
+              ) : null}
+            </li>
           ))}
-        </div>
+        </ul>
 
         <div className="flex flex-col">
           <div
@@ -66,8 +107,10 @@ const NavMenu = () => {
         ref={iconRef}
         data-open="true"
         className={`z-50 flex absolute data-[open=true]:left-48 ml-2 data-[open=false]:left-0 top-2 rounded-full 
-          p-2 bg-blue-200 cursor-pointer transition-all duration-500 border-2 ${isOpen ? "border-black/100" : "border-black/40"}`}
-        onClick={handleRef}
+          p-2 bg-blue-200 cursor-pointer transition-all duration-500 border-2 ${
+            isOpen ? "border-black/100" : "border-black/40"
+          }`}
+        onClick={() => handleRef()}
       >
         <ChevronRight
           className={`${

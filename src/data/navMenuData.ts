@@ -19,25 +19,36 @@ export type Navigation = {
   name: string;
   href: string;
   icon: typeof UsersIcon | typeof Radiation | typeof StoresIcon | any;
-  // children?: Navigation[];
-  // childOpen?: boolean;
+  children?: Navigation[];
+  childOpen: boolean;
   // mobile: boolean;
 };
 
 export const navMenuData: NavMenuItem[] = [
   { label: "Home" },
   { label: "Carousel" },
-  // { label: "Dashboard" },
   { label: "Charts" },
   { label: "Charts Two" },
   { label: "Nav Menu" },
 ];
 
 export const navLinks: Navigation[] = [
-  { name: "Home", href: "/", icon: UsersIcon },
-  { name: "Carousel", href: "carousel", icon: Radiation },
-  // { name: "Dashboard", href: "dashboard", icon: StoresIcon },
-  { name: "Charts", href: "charts", icon: UsersIcon },
-  { name: "Charts Two", href: "chartstwo", icon: Radiation },
-  { name: "Testing", href: "testing", icon: StoresIcon },
+  { name: "Home", href: "/", icon: UsersIcon, childOpen: false },
+  { name: "Carousel", href: "carousel", icon: Radiation, childOpen: false },
+  {
+    name: "Charts",
+    href: "#",
+    icon: UsersIcon,
+    children: [
+      { name: "Charts One", href: "chart", icon: UsersIcon, childOpen: false },
+      {
+        name: "Charts Two",
+        href: "chartstwo",
+        icon: Radiation,
+        childOpen: false,
+      },
+    ],
+    childOpen: false,
+  },
+  { name: "Testing", href: "testing", icon: StoresIcon, childOpen: false },
 ];
