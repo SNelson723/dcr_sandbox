@@ -10,8 +10,8 @@ const NavMenu = () => {
   const ref = useRef<HTMLDivElement>(null);
   const iconRef = useRef<HTMLDivElement>(null);
 
-  const handleRef = (hasChildren: boolean = false) => {
-    if (hasChildren) return; // Prevent toggling if the item has children
+  const handleRef = (href: string) => {
+    if (href == "#") return;
     if (!ref.current || !iconRef.current) return;
     ref.current.setAttribute("data-open", isOpen ? "false" : "true");
     iconRef.current.setAttribute("data-open", isOpen ? "false" : "true");
@@ -24,8 +24,6 @@ const NavMenu = () => {
       [label]: !p[label],
     }));
   };
-
-  console.log("childOpen", childOpen);
 
   return (
     <div className="select-none">
@@ -44,7 +42,7 @@ const NavMenu = () => {
                 key={link.name}
                 to={link.href}
                 draggable={false}
-                onClick={() => handleRef(!!link.children)}
+                onClick={() => handleRef(link.href)}
                 className={({ isActive }) =>
                   `${baseClass} ${
                     isOpen ? "w-full opacity-100" : "w-0 opacity-0"
@@ -87,7 +85,7 @@ const NavMenu = () => {
                     link.children.map((child) => (
                       <li key={child.name} className={`${baseClass}`}>
                         <child.icon className="w-5 h-5 ml-4" />
-                        <NavLink to={child.href}>{child.name}</NavLink>
+                        <NavLink to={child.href} onClick={() => handleRef(child.href)}>{child.name}</NavLink>
                       </li>
                     ))}
                 </ul>
