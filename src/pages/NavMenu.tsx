@@ -33,15 +33,13 @@ const NavMenu = ({ childHeight = 44 }: NavMenuProps) => {
     }));
   };
 
-  console.log(childrenOpen);
-
   return (
-    <div className="select-none">
+    <>
       <div
         ref={ref}
         data-open="false"
         className="
-          z-50 flex flex-col py-4 justify-between absolute left-0 top-0 bg-[rgb(235,235,245)] font-medium overflow-hidden transition-all duration-500
+          z-50 flex flex-col py-4 justify-between absolute left-0 top-0 bg-[rgb(235,235,245)] font-medium transition-all duration-500 select-none
           data-[open=true]:w-48 data-[open=true]:h-full data-[open=true]:bg-opacity-100 data-[open=false]:w-0 data-[open=false]:h-0 data-[open=false]:opacity-0 
         "
       >
@@ -77,18 +75,24 @@ const NavMenu = ({ childHeight = 44 }: NavMenuProps) => {
                   />
                 )}
               </NavLink>
-              {link.children && <ul
-                data-open={childrenOpen[link.name] || "false"}
-                className={`transition-all duration-200 pl-2 data-[open=true]:h-[${childHeight * link.children.length}px] data-[open=true]:opacity-100 data-[open=false]:h-0 data-[open=false]:opacity-0`}
-              >
-                {link.children &&
-                  link.children.map((child) => (
-                    <li key={child.name} className={`${baseClass}`}>
-                      <child.icon className="w-5 h-5 ml-4" />
-                      <NavLink to={child.href}>{child.name}</NavLink>
-                    </li>
-                  ))}
-              </ul>}
+              {link.children && (
+                <ul
+                  data-open={childrenOpen[link.name] || "false"}
+                  className={`transition-all duration-100 pl-2 data-[open=true]:h-[${
+                    childHeight * link.children.length
+                  }px] data-[open=true]:opacity-100 data-[open=false]:h-0 data-[open=false]:opacity-0`}
+                >
+                  {link.children &&
+                    link.children.map((child) => (
+                      <li key={child.name} className={`${baseClass}`}>
+                        <child.icon className="w-5 h-5 ml-4" />
+                        <NavLink to={child.href} draggable={false}>
+                          {child.name}
+                        </NavLink>
+                      </li>
+                    ))}
+                </ul>
+              )}
             </li>
           ))}
         </ul>
@@ -133,7 +137,7 @@ const NavMenu = ({ childHeight = 44 }: NavMenuProps) => {
           Menu
         </span>
       </div>
-    </div>
+    </>
   );
 };
 
