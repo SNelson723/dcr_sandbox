@@ -80,7 +80,7 @@ const NavMenu = ({ childHeight = 44 }: NavMenuProps) => {
                   data-open={childrenOpen[link.name] || "false"}
                   className={`transition-all duration-100 pl-2 data-[open=true]:h-[${
                     childHeight * link.children.length
-                  }px] data-[open=true]:opacity-100 data-[open=false]:h-0 data-[open=false]:opacity-0`}
+                  }px] data-[open=true]:opacity-100 data-[open=false]:h-0 data-[open=false]:opacity-0 data-[open=false]:overflow-hidden`}
                 >
                   {link.children &&
                     link.children.map((child) => (
