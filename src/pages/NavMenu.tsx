@@ -50,7 +50,11 @@ const NavMenu = ({ childHeight = 44 }: NavMenuProps) => {
                 key={link.name}
                 to={link.href}
                 draggable={false}
-                onClick={() => handleRef(link.href)}
+                onClick={(e) => {
+                  if (!e) return;
+                  handleRef(link.href);
+                  handleChildren(link.name);
+                }}
                 className={({ isActive }) =>
                   `${baseClass} ${
                     isOpen ? "w-full opacity-100" : "w-0 opacity-0"
@@ -67,10 +71,6 @@ const NavMenu = ({ childHeight = 44 }: NavMenuProps) => {
                         childrenOpen[link.name] == "true"
                           ? "rotate(90deg)"
                           : "rotate(0deg)",
-                    }}
-                    onClick={(e) => {
-                      if (!e) return;
-                      handleChildren(link.name);
                     }}
                   />
                 )}
