@@ -22,7 +22,7 @@ export type Navigation = {
   icon: typeof UsersIcon | typeof Radiation | typeof StoresIcon | any;
   children: Navigation[];
   childOpen: boolean;
-  // mobile: boolean;
+  mobile: boolean;
 };
 
 export const navLinks: Navigation[] = [
@@ -33,6 +33,7 @@ export const navLinks: Navigation[] = [
     icon: Radiation,
     children: [],
     childOpen: false,
+    mobile: false,
   },
   {
     name: "Charts",
@@ -45,6 +46,7 @@ export const navLinks: Navigation[] = [
         icon: UsersIcon,
         children: [],
         childOpen: false,
+        mobile: false,
       },
       {
         name: "Charts Two",
@@ -52,9 +54,11 @@ export const navLinks: Navigation[] = [
         icon: Radiation,
         children: [],
         childOpen: false,
+        mobile: false,
       },
     ],
     childOpen: false,
+    mobile: false,
   },
   {
     name: "Testing",
@@ -62,5 +66,6 @@ export const navLinks: Navigation[] = [
     icon: StoresIcon,
     children: [],
     childOpen: false,
+    mobile: false,
   },
 ];
