@@ -63,7 +63,7 @@ const NavMenu = ({ childHeight = 44 }: NavMenuProps) => {
               >
                 <link.icon className="w-6 h-6" />
                 {link.name}
-                {link.children?.length && (
+                {link.children.length > 0 && (
                   <ChevronRight
                     className="w-4 h-4 absolute right-4 transition-all duration-200"
                     style={{
