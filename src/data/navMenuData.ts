@@ -26,7 +26,14 @@ export type Navigation = {
 };
 
 export const navLinks: Navigation[] = [
-  { name: "Home", href: "/", icon: UsersIcon, children: [], childOpen: false },
+  {
+    name: "Home",
+    href: "/",
+    icon: UsersIcon,
+    children: [],
+    childOpen: false,
+    mobile: false,
+  },
   {
     name: "Carousel",
     href: "carousel",
