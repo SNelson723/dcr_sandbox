@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { UsersIcon } from "@heroicons/react/24/outline";
 import Radiation from "../svgs/Radiation";
 import StoresIcon from "../svgs/StoresIcon";
