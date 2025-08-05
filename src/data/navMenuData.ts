@@ -20,28 +20,47 @@ export type Navigation = {
   name: string;
   href: string;
   icon: typeof UsersIcon | typeof Radiation | typeof StoresIcon | any;
-  children?: Navigation[];
+  children: Navigation[];
   childOpen: boolean;
   // mobile: boolean;
 };
 
 export const navLinks: Navigation[] = [
-  { name: "Home", href: "/", icon: UsersIcon, childOpen: false },
-  { name: "Carousel", href: "carousel", icon: Radiation, childOpen: false },
+  { name: "Home", href: "/", icon: UsersIcon, children: [], childOpen: false },
+  {
+    name: "Carousel",
+    href: "carousel",
+    icon: Radiation,
+    children: [],
+    childOpen: false,
+  },
   {
     name: "Charts",
     href: "#",
     icon: UsersIcon,
     children: [
-      { name: "Charts One", href: "charts", icon: UsersIcon, childOpen: false },
+      {
+        name: "Charts One",
+        href: "charts",
+        icon: UsersIcon,
+        children: [],
+        childOpen: false,
+      },
       {
         name: "Charts Two",
         href: "chartstwo",
         icon: Radiation,
+        children: [],
         childOpen: false,
       },
     ],
     childOpen: false,
   },
-  { name: "Testing", href: "testing", icon: StoresIcon, childOpen: false },
+  {
+    name: "Testing",
+    href: "testing",
+    icon: StoresIcon,
+    children: [],
+    childOpen: false,
+  },
 ];
