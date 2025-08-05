@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { UsersIcon } from "@heroicons/react/24/outline";
 import Radiation from "../svgs/Radiation";
 import StoresIcon from "../svgs/StoresIcon";
@@ -23,14 +24,6 @@ export type Navigation = {
   childOpen: boolean;
   // mobile: boolean;
 };
-
-export const navMenuData: NavMenuItem[] = [
-  { label: "Home" },
-  { label: "Carousel" },
-  { label: "Charts" },
-  { label: "Charts Two" },
-  { label: "Nav Menu" },
-];
 
 export const navLinks: Navigation[] = [
   { name: "Home", href: "/", icon: UsersIcon, childOpen: false },
