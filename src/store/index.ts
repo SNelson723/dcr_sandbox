@@ -5,6 +5,7 @@ import fieldReducer from "../features/fieldSlice";
 import tableReducer from "../features/tableSlice";
 import hourlyReducer from "../features/hourlySlice";
 import chartReducer from "../features/chartSlice";
+import contextMenuReducer from "../features/contextMenuSlice";
 
 export const store = configureStore({
   reducer: {
@@ -13,7 +14,8 @@ export const store = configureStore({
     table: tableReducer,
     hourly: hourlyReducer,
     chart: chartReducer,
-  }
+    context: contextMenuReducer,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

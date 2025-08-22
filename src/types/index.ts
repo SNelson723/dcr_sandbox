@@ -87,16 +87,34 @@ export type DateSale = {
   sale_date: string;
   sales: number;
   quantity: number;
-}
+};
 
 export type SubSale = {
   sub_department_description: string;
   sales: number;
   quantity: number;
-}
+};
 
 export type ChartData = {
   month: string;
   avgTemp: number;
   iceCreamSales: number;
+};
+
+export type Handlers = {
+  copy: () => Promise<void> | void;
+  exportVisual: () => Promise<void> | void;
+  reset: () => Promise<void> | void;
+  mode: (mode: string) => Promise<void> | void;
+  exportAll: () => Promise<void> | void;
+  test: () => Promise<void> | void;
+};
+export type ContextEvent = React.MouseEvent<
+  HTMLTableRowElement | HTMLDivElement
+>;
+export type Option = {
+  label: string;
+  key: keyof Handlers;
+  children?: Option[];
+  value?: string;
 };
