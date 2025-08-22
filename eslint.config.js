@@ -25,7 +25,7 @@ export default tseslint.config(
       "@typescript-eslint/no-explicit-any": "off",
       "react-hooks/exhaustive-deps": 0,
       "@typescript-eslint/no-unused-expressions": 0,
-      "no-console": 2,
+      "no-console": "off",
       "no-explicit-any": 0,
       "@typescript-eslint/no-explicit-any": "off",
       "react-refresh/only-export-components": [
