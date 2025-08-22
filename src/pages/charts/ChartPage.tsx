@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { useAppSelector, useAppDispatch } from "../hooks";
-import { getSubSales, getDateSales } from "../api/charts";
-import { JsonError } from "../types";
-import { setSubSales, setDateSales } from "../features/chartSlice";
+import { useAppSelector, useAppDispatch } from "../../hooks";
+import { getSubSales, getDateSales } from "../../api/charts";
+import { JsonError } from "../../types";
+import { setSubSales, setDateSales } from "../../features/chartSlice";
 import {
   VictoryBar,
   VictoryChart,

@@ -8,8 +8,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./pages/App.tsx";
 import Home from "./pages/Home.tsx";
 import StudyGuide from "./pages/study/StudyGuide.tsx";
-import ChartPage from "./pages/ChartPage.tsx";
-import ChartPageTwo from "./pages/ChartPageTwo.tsx";
+import ChartPage from "./pages/charts/ChartPage.tsx";
+import ChartPageTwo from "./pages/charts/ChartPageTwo.tsx";
 import NavMenu from "./pages/NavMenu.tsx";
 import Testing from "./pages/testing/Testing.tsx";
 
