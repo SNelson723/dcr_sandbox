@@ -12,7 +12,7 @@ const ChartPageTwo = () => {
     d3.extent(subSales.map((sale) => sale.sales)) as [number, number],
     [370, 20]
   );
-  const line = d3.line((d: number, i: number) => x(i), y);
+  const line = d3.line((_d: number, i: number) => x(i), y);
 
   useEffect(() => {
     if (gx.current) {
@@ -36,7 +36,7 @@ const ChartPageTwo = () => {
               fill="none"
               stroke="currentColor"
               strokeWidth="1.5"
-              d={line(subSales.map((sale) => sale.sales))}
+              d={line(subSales.map((sale) => sale.sales)) as string}
             />
             <g fill="white" stroke="currentColor" strokeWidth="1.5">
               {subSales.map((sale, i) => (
