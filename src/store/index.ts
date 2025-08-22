@@ -6,6 +6,7 @@ import tableReducer from "../features/tableSlice";
 import hourlyReducer from "../features/hourlySlice";
 import chartReducer from "../features/chartSlice";
 import contextMenuReducer from "../features/contextMenuSlice";
+import testingReducer from '../features/testingSlice';
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
     hourly: hourlyReducer,
     chart: chartReducer,
     context: contextMenuReducer,
+    testing: testingReducer,
   },
 });
 

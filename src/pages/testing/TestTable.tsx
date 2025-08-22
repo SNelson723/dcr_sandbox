@@ -1,4 +1,16 @@
-const TestTable = () => {
+interface TestTableProps {
+  onRightClick?: (
+    e: React.MouseEvent<HTMLTableRowElement>,
+    record: any
+  ) => void;
+}
+
+const dummyData = [
+  { name: "Sample Test 1", status: "Passed", user: "User 1" },
+  { name: "Sample Test 2", status: "Failed", user: "User 2" },
+];
+
+const TestTable = ({ onRightClick }: TestTableProps) => {
   return (
     <table className="min-w-full bg-white border border-gray-200">
       <thead>
@@ -9,16 +21,16 @@ const TestTable = () => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td className="py-2 px-4 border-b">Sample Test 1</td>
-          <td className="py-2 px-4 border-b">Passed</td>
-          <td className="py-2 px-4 border-b">User 1</td>
-        </tr>
-        <tr>
-          <td className="py-2 px-4 border-b">Sample Test 2</td>
-          <td className="py-2 px-4 border-b">Failed</td>
-          <td className="py-2 px-4 border-b">User 2</td>
-        </tr>
+        {dummyData.map((record, index) => (
+          <tr
+            key={index}
+            onContextMenuCapture={(e) => onRightClick?.(e, record)}
+          >
+            <td className="py-2 px-4 border-b">{record.name}</td>
+            <td className="py-2 px-4 border-b">{record.status}</td>
+            <td className="py-2 px-4 border-b">{record.user}</td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );
