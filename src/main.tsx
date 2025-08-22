@@ -11,7 +11,7 @@ import StudyGuide from "./pages/study/StudyGuide.tsx";
 import ChartPage from "./pages/ChartPage.tsx";
 import ChartPageTwo from "./pages/ChartPageTwo.tsx";
 import NavMenu from "./pages/NavMenu.tsx";
-import Testing from "./pages/Testing.tsx";
+import Testing from "./pages/testing/Testing.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

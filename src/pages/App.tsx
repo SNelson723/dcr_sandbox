@@ -8,7 +8,7 @@ import { JsonError } from "../types";
 import NavMenu from "./NavMenu";
 
 const App = () => {
-  const { awsUrl, arn, dashId, devUrl } = useAppSelector((state) => state.app);
+  const { awsUrl, devUrl } = useAppSelector((state) => state.app);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -39,13 +39,13 @@ const App = () => {
       .catch((err: JsonError) => {
         console.error("Error fetching date sales:", err.message);
       });
-  }, [awsUrl, arn, dashId]);
+  }, [awsUrl, devUrl]);
 
   return (
     <div className="w-screen h-screen bg-bkg text-themeText">
       <div className="w-full flex flex-col items-center">
         <NavMenu />
-        <div className="flex-1 justify-center align-center place-items-center h-full">
+        <div className="flex-1 h-full">
           <Outlet />
         </div>
       </div>
