@@ -12,7 +12,7 @@ const dummyData = [
 
 const TestTable = ({ onRightClick }: TestTableProps) => {
   return (
-    <table className="min-w-full bg-white border border-gray-200">
+    <table className="min-w-full bg-white border border-gray-200 select-none">
       <thead>
         <tr>
           <th className="py-2 px-4 border-b text-left">Test Name</th>
@@ -20,11 +20,12 @@ const TestTable = ({ onRightClick }: TestTableProps) => {
           <th className="py-2 px-4 border-b text-left">User</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className="cursor-pointer">
         {dummyData.map((record, index) => (
           <tr
             key={index}
             onContextMenuCapture={(e) => onRightClick?.(e, record)}
+            className={`hover:bg-blue-200 transition-all duration-300`}
           >
             <td className="py-2 px-4 border-b">{record.name}</td>
             <td className="py-2 px-4 border-b">{record.status}</td>

@@ -43,16 +43,14 @@ const ContextMenu = ({
     }
     return "";
   };
+
   const handleClick = (
-    children: Option[] | undefined,
     fn: Handlers,
-    key: keyof Handlers
+    key: keyof Handlers,
+    value: string | null
   ) => {
-    if (children && children.length > 0) {
-      setShowChildren(!showChildren);
-      return;
-    }
-    fn[key];
+    setShowChildren(!showChildren);
+    fn[key](value);
   };
 
   return (
@@ -75,7 +73,11 @@ const ContextMenu = ({
             >
               <div
                 onClick={() =>
-                  handleClick(option.children, handlers, option.key)
+                  handleClick(
+                    handlers,
+                    option.key,
+                    option.value ? option.value : null
+                  )
                 }
               >
                 {option.label}
@@ -89,7 +91,11 @@ const ContextMenu = ({
                       key={ci}
                       className={`${className} px-4 py-0.5`}
                       onClick={() =>
-                        handleClick(child.children, handlers, child.key)
+                        handleClick(
+                          handlers,
+                          child.key,
+                          child.value ? child.value : null
+                        )
                       }
                     >
                       {child.label}
