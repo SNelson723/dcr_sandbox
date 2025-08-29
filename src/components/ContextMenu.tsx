@@ -50,7 +50,7 @@ const ContextMenu = ({
     value: string | null
   ) => {
     setShowChildren(!showChildren);
-    fn[key](value);
+    fn[key](value as string);
   };
 
   return (
