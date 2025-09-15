@@ -1,48 +1,38 @@
-import { useState } from "react";
-import TestTable from "./TestTable";
-import { ContextEvent, Handlers } from "../../types";
-import ContextMenu from "../../components/ContextMenu";
-import { upcOptions, chartOptions } from ".";
-import { useAppDispatch } from "../../hooks";
-import { setMenuPosition } from "../../features/contextMenuSlice";
-import { setSelectedRecord } from "../../features/testingSlice";
+import LoadCarousel from "./LoadCarousel";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { startLoading } from "../../features/loadCarouselSlice";
 
 const Testing = () => {
   const dispatch = useAppDispatch();
-  const [options, setOptions] = useState(chartOptions);
+  const state = useAppSelector((state) => state.loadCarousel);
 
-  const handlers: Handlers = {
-    copy: () => console.log("copy"),
-    exportVisual: () => console.log("export visual"),
-    reset: () => console.log("reset"),
-    mode: (mode: string) => console.log("mode", mode),
-    exportAll: () => console.log("export all"),
-    test: () => console.log("test"),
-  };
-
-  const handleRightClick = (event: ContextEvent, item: any | undefined) => {
-    event.preventDefault();
-    const tagName = event.currentTarget.tagName.toLowerCase();
-    if (item) dispatch(setSelectedRecord(item));
-    setOptions(tagName === "tr" ? upcOptions : chartOptions);
-    dispatch(setMenuPosition({ x: event.pageX, y: event.pageY }));
-  };
+  useEffect(() => {}, []);
 
   return (
-    <div className="flex flex-col py-12 h-screen">
-      <div
-        className="px-12 mb-12 text-2xl font-medium bg-[#10b981] py-2 rounded-lg shadow-lg"
-        onContextMenuCapture={(e) => handleRightClick(e, undefined)}
-      >
+    <div className="w-screen flex flex-col justify-center items-center py-12 px-4 h-screen gap-8">
+      <div className="px-12 text-2xl font-medium bg-[#10b981] py-2 rounded-lg shadow-lg">
         <h1 className="mb-4">Testing Page</h1>
         <p className="mb-4">This is a placeholder for testing purposes.</p>
       </div>
-      <TestTable onRightClick={handleRightClick} />
-      <ContextMenu
-        handlers={handlers}
-        options={options}
-        className="hover:bg-blue-200"
-      />
+      <button
+        onClick={() => dispatch(startLoading())}
+        className="bg-blue-500 px-10 py-2 border-2 border-blue-500 rounded-lg hover:bg-blue-200 
+          hover:text-black text-white font-medium transition-all duration-200"
+      >
+        Start
+      </button>
+      <LoadCarousel className="w-1/4 h-64 bg-gray-200 border shadow-md">
+        <div className="flex h-64 items-center justify-center bg-white font-bold">
+          Hang tight, loading...
+        </div>
+        <div className="flex h-64 items-center justify-center bg-white font-bold">
+          Data received, processing...
+        </div>
+        <div className="flex h-64 items-center justify-center bg-white font-bold">
+          Finalizing, almost there...
+        </div>
+      </LoadCarousel>
     </div>
   );
 };

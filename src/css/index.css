@@ -13,13 +13,8 @@ body {
   overscroll-behavior: contain;
 }
 
-/* .transition-max-height {
-  transition: max-height 0.3s cubic-bezier(.4,0,.2,1);
-  overflow: hidden;
-} */
-
 :root {
-  --color-bkg: 240 245 255;
+  --color-bkg: rgb(240, 245, 255);
   --color-blue: #3b82f6;
   --color-orange: #f97316;
   --color-green: #10b981;
