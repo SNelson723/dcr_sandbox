@@ -1,13 +1,45 @@
+import { useRef, useState } from "react";
+import { useAppDispatch } from "../../hooks";
+import { startLoading, stopLoading } from "../../features/loadCarouselSlice";
+import { getPriceOpt } from "../../api/data";
 import LoadCarousel from "./LoadCarousel";
-import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { startLoading } from "../../features/loadCarouselSlice";
+
+const fileExtensions = [".csv"];
 
 const Testing = () => {
+  const inputRef = useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
-  const state = useAppSelector((state) => state.loadCarousel);
+  const [file, setFile] = useState<File | null>(null);
 
-  useEffect(() => {}, []);
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || !e.target.files[0]) {
+      alert("No file selected.");
+      if (inputRef.current) inputRef.current.value = "";
+      return;
+    }
+    if (!fileExtensions.some((ext) => e.target.files![0].name.endsWith(ext))) {
+      alert("Invalid file type. Please select a .csv file.");
+      if (inputRef.current) inputRef.current.value = "";
+      return;
+    }
+    const selected = e.target.files[0];
+    setFile(selected);
+  };
+
+  const getData = () => {
+    if (!file) {
+      alert("No file selected.");
+      return;
+    }
+    dispatch(startLoading());
+    getPriceOpt(file)
+      .then((response) => {
+        const j = response.data;
+        console.log("Response data:", j);
+      })
+      .catch((error) => console.error("Error fetching data:", error))
+      .finally(() => dispatch(stopLoading()));
+  };
 
   return (
     <div className="w-screen flex flex-col justify-center items-center py-12 px-4 h-screen gap-8">
@@ -15,16 +47,33 @@ const Testing = () => {
         <h1 className="mb-4">Testing Page</h1>
         <p className="mb-4">This is a placeholder for testing purposes.</p>
       </div>
-      <button
-        onClick={() => dispatch(startLoading())}
-        className="bg-blue-500 px-10 py-2 border-2 border-blue-500 rounded-lg hover:bg-blue-200 
+      <div className="flex gap-4">
+        <button
+          onClick={getData}
+          className="bg-blue-500 px-10 py-2 border-2 border-blue-500 rounded-lg hover:bg-blue-200 
           hover:text-black text-white font-medium transition-all duration-200"
-      >
-        Start
-      </button>
+        >
+          Start
+        </button>
+        <label
+          className="bg-blue-500 px-11 py-[9.5px] border-2 border-blue-500 rounded-lg hover:bg-blue-200 
+          hover:text-black text-white font-medium transition-all duration-200"
+        >
+          File
+          <input
+            type="file"
+            className="hidden"
+            ref={inputRef}
+            onChange={handleFileChange}
+          />
+        </label>
+      </div>
       <LoadCarousel className="w-1/4 h-64 bg-gray-200 border shadow-md">
         <div className="flex h-64 items-center justify-center bg-white font-bold">
-          Hang tight, loading...
+          Request sent...
+        </div>
+        <div className="flex h-64 items-center justify-center bg-white font-bold">
+          Recieving data, loading...
         </div>
         <div className="flex h-64 items-center justify-center bg-white font-bold">
           Data received, processing...
@@ -33,6 +82,8 @@ const Testing = () => {
           Finalizing, almost there...
         </div>
       </LoadCarousel>
+
+      <div></div>
     </div>
   );
 };

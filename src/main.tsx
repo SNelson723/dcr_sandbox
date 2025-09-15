@@ -12,6 +12,7 @@ import ChartPage from "./pages/charts/ChartPage.tsx";
 import ChartPageTwo from "./pages/charts/ChartPageTwo.tsx";
 import NavMenu from "./pages/NavMenu.tsx";
 import Testing from "./pages/testing/Testing.tsx";
+import UpcDailySales from "./pages/upcDailySales/UpcDailySales.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -25,6 +26,7 @@ createRoot(document.getElementById("root")!).render(
             <Route path="chartstwo" element={<ChartPageTwo />} />
             <Route path="navmenu" element={<NavMenu />} />
             <Route path="testing" element={<Testing />} />
+            <Route path="upc-daily" element={<UpcDailySales />} />
           </Route>
         </Routes>
       </BrowserRouter>

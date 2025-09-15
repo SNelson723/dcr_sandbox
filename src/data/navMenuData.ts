@@ -65,4 +65,12 @@ export const navLinks: Navigation[] = [
     childOpen: false,
     mobile: false,
   },
+  {
+    name: "Upc Daily Sales",
+    href: "upc-daily",
+    icon: StoresIcon,
+    children: [],
+    childOpen: false,
+    mobile: false,
+  },
 ];

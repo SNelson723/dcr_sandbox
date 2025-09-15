@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { nextIndex } from "../../features/loadCarouselSlice";
 
 type CarouselProps = {
   children: React.ReactNode;
@@ -8,29 +10,30 @@ type CarouselProps = {
 };
 
 const LoadCarousel = ({ children, className = "" }: CarouselProps) => {
-  const [index, setIndex] = useState<number>(0);
+  const dispatch = useAppDispatch();
+  const state = useAppSelector((state) => state.loadCarousel);
   const totalSlides = React.Children.count(children);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndex((i) => {
-        if (i >= totalSlides - 1) {
+      if (state.isLoading) {
+        if (state.index === totalSlides - 1) {
           clearInterval(interval);
-          return i;
+        } else {
+          dispatch(nextIndex());
         }
-        return i + 1;
-      });
-    }, 2500);
+      }
+    }, state.duration);
 
     return () => clearInterval(interval);
-  }, [totalSlides]);
+  }, [totalSlides, dispatch, state.isLoading, state.index, state.duration]);
 
   return (
     <div className={`relative overflow-hidden rounded-lg ${className}`}>
       <div
         className="flex transition-transform duration-500"
         style={{
-          transform: `translateX(-${index * 100}%)`,
+          transform: `translateX(-${state.index * 100}%)`,
         }}
       >
         {React.Children.map(children, (child, i) => (
