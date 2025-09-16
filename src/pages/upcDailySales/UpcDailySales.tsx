@@ -5,10 +5,12 @@ import DailyBar from "./DailyBar";
 import {
   clearData,
   setAllUpcs,
+  setCurrentUpc,
   setDailyData,
-  setSelectedUpcs,
+  // setSelectedUpcs,
   UpcDaily,
 } from "../../features/upcSlice";
+import DailyHeat from "./DailyHeat";
 
 const fileExtensions = [".csv"];
 
@@ -104,7 +106,8 @@ const UpcDailySales = () => {
   };
 
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(setSelectedUpcs(e.target.value));
+    // dispatch(setSelectedUpcs(e.target.value));
+    dispatch(setCurrentUpc(e.target.value));
   };
 
   return (
@@ -130,7 +133,7 @@ const UpcDailySales = () => {
             </button>
             <label
               className="bg-blue-500 block w-full text-center mt-1 px-11 py-1 border-2 border-blue-500 rounded-lg hover:bg-blue-200 
-          hover:text-black text-white font-medium transition-all duration-200"
+          hover:text-black text-white font-medium transition-all duration-200 cursor-pointer"
             >
               File
               <input
@@ -166,7 +169,7 @@ const UpcDailySales = () => {
                 <div
                   key={i}
                   className={`cursor-pointer p-1 ${
-                    state.selectedUpcs.includes(u) ? "bg-blue-200" : "bg-white"
+                    state.currentUpc === u ? "bg-blue-200" : "bg-white"
                   }`}
                   onClick={() => handleSelect({ target: { value: u } } as any)}
                 >
@@ -179,7 +182,8 @@ const UpcDailySales = () => {
         </div>
         {/* row two */}
         <div className="grid grid-cols-2 gap-4 w-full">
-          <DailyBar />
+          {/* <DailyBar /> */}
+          <DailyHeat />
           <DailyBar />
         </div>
       </div>

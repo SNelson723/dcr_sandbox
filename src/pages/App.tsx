@@ -1,15 +1,15 @@
 import { Outlet } from "react-router";
 import { useEffect } from "react";
 import { useAppSelector } from "../hooks";
-import { useAppDispatch } from "../hooks";
-import { getSubSales, getDateSales } from "../api/charts";
-import { setSubSales, setDateSales } from "../features/chartSlice";
-import { JsonError } from "../types";
+// import { useAppDispatch } from "../hooks";
+// import { getSubSales, getDateSales } from "../api/charts";
+// import { setSubSales, setDateSales } from "../features/chartSlice";
+// import { JsonError } from "../types";
 import NavMenu from "./NavMenu";
 
 const App = () => {
   const { awsUrl, devUrl } = useAppSelector((state) => state.app);
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
   useEffect(() => {
     // getSubSales(devUrl)

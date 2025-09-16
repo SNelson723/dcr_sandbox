@@ -17,12 +17,14 @@ interface UpcState {
   daily: UpcDaily[];
   allUpcs: string[];
   selectedUpcs: string[];
+  currentUpc: string;
 }
 
 const initialState: UpcState = {
   daily: [],
   allUpcs: [],
   selectedUpcs: [],
+  currentUpc: "",
 };
 
 const upcSlice = createSlice({
@@ -39,18 +41,29 @@ const upcSlice = createSlice({
       if (!state.selectedUpcs.includes(action.payload)) {
         state.selectedUpcs.push(action.payload);
       } else {
-        state.selectedUpcs = state.selectedUpcs.filter((u) => u !== action.payload);
+        state.selectedUpcs = state.selectedUpcs.filter(
+          (u) => u !== action.payload
+        );
       }
+    },
+    setCurrentUpc: (state, action: PayloadAction<string>) => {
+      state.currentUpc = action.payload;
     },
     clearData: (state) => {
       state.daily = [];
       state.allUpcs = [];
       state.selectedUpcs = [];
+      state.currentUpc = "";
     },
   },
 });
 
-export const { setDailyData, clearData, setAllUpcs, setSelectedUpcs } =
-  upcSlice.actions;
+export const {
+  setDailyData,
+  clearData,
+  setAllUpcs,
+  setSelectedUpcs,
+  setCurrentUpc,
+} = upcSlice.actions;
 
 export default upcSlice.reducer;

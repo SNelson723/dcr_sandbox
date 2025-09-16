@@ -24,8 +24,8 @@ export const getDailySales = async (
   file: File,
   storeids = "111,36,45,35,104,22,13",
   userid = 1,
-  startdate = "7/1/2025",
-  enddate = "9/7/2025"
+  startdate = "8/7/2025",
+  enddate = "8/31/2025"
 ) => {
   const formData = new FormData();
   formData.append("file", file);
