@@ -1,19 +1,36 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getEmbedUrl } from "../api/quicksight";
 import { useAppSelector, useAppDispatch } from "../hooks";
 import { JsonError } from "../types";
 import { setEmbedUrl } from "../features/appSlice";
+import LoadingIndicator from "../components/loadingIndicators/LoadingIndicator";
+import logo from "../assets/logo_black.svg";
 
 const Home = () => {
   const context = useAppSelector((state) => state.app);
   const dispatch = useAppDispatch();
+  const [currentHeight, setCurrentHeight] = useState(window.innerHeight);
+  const [currentWidth, setCurrentWidth] = useState(window.innerWidth);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setCurrentHeight(window.innerHeight);
+      setCurrentWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Make sure to replace the current allowed domains in quicksight.py in goliath repo
+  // Change it back when pulling/pushing => to be safe
+  // AllowedDomains=['http://localhost:5173', 'https://www.datacashreg.com', 'http://localhost:5174'],
   useEffect(() => {
     getEmbedUrl(context.quickSightUrl, context.email, context.api_key)
       .then((resp) => {
         const j = resp.data;
         if (j.error === 0) {
-          dispatch(setEmbedUrl(j.embed_url))
+          dispatch(setEmbedUrl(j.embed_url));
         }
       })
       .catch((err: JsonError) => {
@@ -22,15 +39,34 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="mt-12 w-screen flex flex-col items-center justify-center min-h-[60vh] text-themeText">
-      <div>
-        <div className="py-2 px-4 border-b-2 mb-2 border-b-themeText text-2xl font-semibold text-center mx-auto">
-          Home page
+    <div className="h-screen w-screen bg-bkg">
+      {context.embedUrl ? (
+        <>
+          <div id="header"></div>
+          <div id="body" className="h-screen w-full flex items-start">
+            <iframe
+              style={{
+                height: `${currentHeight - 56}px`,
+                width: `${currentWidth}px`,
+              }}
+              title="QuickSight Dashboard"
+              src={context.embedUrl}
+              allowFullScreen
+            />
+          </div>
+          <div id="footer"></div>
+        </>
+      ) : (
+        <div className="h-[calc(100vh-56px)] flex flex-col justify-center items-center">
+          <img className="h-56" src={logo} alt="Mikto" />
+          <div className="relative bg-white min-h-24 mt-2 p-4 rounded-lg shadow-lg">
+            <p className="text-content text-[17px]">
+              Please wait while we load your dashboard...
+            </p>
+            <LoadingIndicator message="" className="mt-6" />
+          </div>
         </div>
-        <div className="mx-auto text-center py-2 text-xl">
-          Welcome to Stephen's Sandbox Bitches
-        </div>
-      </div>
+      )}
     </div>
   );
 };
