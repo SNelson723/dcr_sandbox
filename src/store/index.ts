@@ -8,6 +8,7 @@ import chartReducer from "../features/chartSlice";
 import contextMenuReducer from "../features/contextMenuSlice";
 import testingReducer from "../features/testingSlice";
 import loadCarouselReducer from "../features/loadCarouselSlice";
+import upcReducer from "../features/upcSlice";
 
 export const store = configureStore({
   reducer: {
@@ -19,6 +20,7 @@ export const store = configureStore({
     context: contextMenuReducer,
     testing: testingReducer,
     loadCarousel: loadCarouselReducer,
+    upc: upcReducer,
   },
 });
 
