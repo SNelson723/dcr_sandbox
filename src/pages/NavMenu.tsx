@@ -3,6 +3,7 @@ import ChevronRight from "../components/ChevronRight";
 import { Navigation, navLinks } from "../data/navMenuData";
 import { NavLink } from "react-router";
 import { baseClass, activeClass } from "../data/navMenuData";
+import logo from "../assets/logo_black.svg";
 
 export interface NavMenuProps {
   childHeight?: number;
@@ -14,7 +15,7 @@ const NavMenu = ({ childHeight = 44 }: NavMenuProps) => {
     {}
   );
   const ref = useRef<HTMLDivElement>(null);
-  const iconRef = useRef<HTMLDivElement>(null);
+  const iconRef = useRef<HTMLImageElement>(null);
 
   const handleRef = (href: string = "") => {
     if (!ref.current || !iconRef.current || href == "#") return;
@@ -34,14 +35,18 @@ const NavMenu = ({ childHeight = 44 }: NavMenuProps) => {
   };
 
   return (
-    <>
+    <div className="w-full relative">
       <div
         ref={ref}
         data-open="false"
-        className="
-          z-50 flex flex-col py-4 justify-between absolute left-0 top-0 bg-[rgb(235,235,245)] font-medium transition-all duration-500 select-none
-          data-[open=true]:w-48 data-[open=true]:h-full data-[open=true]:bg-opacity-100 data-[open=false]:w-0 data-[open=false]:h-0 data-[open=false]:opacity-0 
-        "
+        className="z-50 flex flex-col justify-between absolute left-0 top-[56px] bg-[rgb(240,245,255)] font-medium 
+          transition-all duration-300 select-none shadow-[5px_20px_25px_rgba(0,0,0,0.2)] 
+          data-[open=true]:w-48 
+          data-[open=true]:h-[calc(100vh-56px)]
+          data-[open=true]:bg-opacity-100 
+          data-[open=false]:w-0 
+          data-[open=false]:h-0 
+          data-[open=false]:opacity-0"
       >
         <ul className="flex flex-col">
           {navLinks.map((link: Navigation) => (
@@ -60,7 +65,7 @@ const NavMenu = ({ childHeight = 44 }: NavMenuProps) => {
                     isOpen
                       ? "w-full opacity-100"
                       : "w-0 opacity-0 pointer-events-none"
-                  } ${isActive ? activeClass : ""}`
+                  } ${isActive && !link.children.length ? activeClass : ""}`
                 }
               >
                 <link.icon className="w-6 h-6" />
@@ -86,9 +91,20 @@ const NavMenu = ({ childHeight = 44 }: NavMenuProps) => {
                 >
                   {link.children &&
                     link.children.map((child) => (
-                      <li key={child.name} className={`${baseClass}`}>
-                        <child.icon className="w-5 h-5 ml-4" />
-                        <NavLink to={child.href} draggable={false}>
+                      <li key={child.name} className={`w-full`}>
+                        <NavLink
+                          to={child.href}
+                          draggable={false}
+                          className={({ isActive }) =>
+                            `${baseClass} ${isActive ? activeClass : ""}`
+                          }
+                          onClick={(e) => {
+                            if (!e) return;
+                            handleRef(child.href);
+                            handleChildren(child.name); 
+                          }}
+                        >
+                          <child.icon className="w-5 h-5 ml-4" />
                           {child.name}
                         </NavLink>
                       </li>
@@ -101,14 +117,14 @@ const NavMenu = ({ childHeight = 44 }: NavMenuProps) => {
 
         <div className="flex flex-col">
           <div
-            className={`transition-all duration-500 text-nowrap p-4 cursor-pointer hover:bg-blue-200 ${baseClass} ${
+            className={`transition-all duration-200 text-nowrap p-4 cursor-pointer hover:bg-blue-200 ${baseClass} ${
               isOpen ? "w-full opacity-100" : "w-0 opacity-0"
             }`}
           >
             Settings
           </div>
           <div
-            className={`transition-all duration-500 text-nowrap py-2 px-4 cursor-pointer hover:bg-blue-200 ${baseClass} ${
+            className={`transition-all duration-200 text-nowrap py-2 px-4 cursor-pointer hover:bg-blue-200 ${baseClass} ${
               isOpen ? "w-full opacity-100" : "w-0 opacity-0"
             }`}
           >
@@ -119,27 +135,17 @@ const NavMenu = ({ childHeight = 44 }: NavMenuProps) => {
       <div
         ref={iconRef}
         data-open="false"
-        className={`z-50 flex absolute data-[open=true]:left-48 ml-2 data-[open=false]:left-0 top-2 rounded-full 
-          p-2 bg-blue-200 cursor-pointer transition-all duration-500 border-2 ${
-            isOpen ? "border-black/100" : "border-black/40"
-          }`}
-        onClick={() => handleRef()}
+        className="z-50 flex items-center absolute shadow-md h-[56px]"
       >
-        <ChevronRight
-          className={`${
-            isOpen ? "opacity-100" : "opacity-40"
-          } transition-all duration-300`}
-          style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
+        <img
+          className="w-[51px] cursor-pointer"
+          src={logo}
+          alt="Mikto"
+          onClick={() => handleRef()}
         />
-        <span
-          className={`pr-2 ${
-            isOpen ? "opacity-100" : "opacity-40"
-          } transition-all duration-300`}
-        >
-          Menu
-        </span>
+        <span className="font-medium mr-[10px]">Admin Dashboard</span>
       </div>
-    </>
+    </div>
   );
 };
 
